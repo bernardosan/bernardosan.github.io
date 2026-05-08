@@ -22,18 +22,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install, build, and upload site
+      - name: Build Astro site
         uses: withastro/action@v4
 
   deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-    needs: build
-    runs-on: ubuntu-latest
-
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages V2
         id: deployment
         uses: actions/deploy-pages@v4
