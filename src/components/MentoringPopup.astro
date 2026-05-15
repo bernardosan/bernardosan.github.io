@@ -1,0 +1,170 @@
+---
+type Props = {
+  lang?: "pt" | "en";
+};
+
+const { lang = "pt" } = Astro.props;
+
+const content =
+  lang === "en"
+    ? {
+        badge: "Free first call",
+        title: "Power Platform mentoring",
+        text:
+          "Learn how to grow technically, position yourself better, and sell solutions to international clients.",
+        cta: "View mentorship",
+        mini: "Mentoring",
+        href: "/en/mentoring/",
+        collapseLabel: "Minimize mentoring popup",
+        expandLabel: "Open mentoring popup",
+      }
+    : {
+        badge: "Primeira consulta gratuita",
+        title: "Mentoria Power Platform",
+        text:
+          "Aprende a evoluir tecnicamente, posicionar-te melhor e vender soluções para clientes internacionais.",
+        cta: "Ver mentoria",
+        mini: "Mentoria",
+        href: "/mentoria/",
+        collapseLabel: "Minimizar popup de mentoria",
+        expandLabel: "Abrir popup de mentoria",
+      };
+---
+
+<div class="mentor-popup-shell" data-mentor-popup>
+  <article class="mentor-popup" data-mentor-popup-card>
+    <button
+      class="mentor-popup-close"
+      type="button"
+      aria-label={content.collapseLabel}
+      data-mentor-popup-collapse
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 12h12"></path>
+      </svg>
+    </button>
+
+    <div class="mentor-popup-badge">
+      {content.badge}
+    </div>
+
+    <h3>{content.title}</h3>
+
+    <p>{content.text}</p>
+
+    <a class="mentor-popup-link" href={content.href}>
+      {content.cta}
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 12h14"></path>
+        <path d="m13 6 6 6-6 6"></path>
+      </svg>
+    </a>
+  </article>
+
+  <button
+  class="mentor-popup-mini"
+  type="button"
+  aria-label={content.expandLabel}
+  data-mentor-popup-expand
+>
+  {content.mini}
+</button>
+</div>
+
+<script is:inline>
+  (() => {
+    const popup = document.querySelector("[data-mentor-popup]");
+
+    if (!popup) return;
+
+    const collapseButton = popup.querySelector("[data-mentor-popup-collapse]");
+    const expandButton = popup.querySelector("[data-mentor-popup-expand]");
+
+    const storageKey = "bernardoMentorPopupCollapsedAt";
+
+    // Time before the popup automatically becomes big again.
+    // Current value: 30 minutes.
+    const collapsedResetMs = 30 * 60 * 1000;
+
+    let resetTimer;
+
+    const getCollapsedAt = () => {
+      try {
+        return Number(window.localStorage.getItem(storageKey) || 0);
+      } catch {
+        return 0;
+      }
+    };
+
+    const saveCollapsedAt = () => {
+      try {
+        window.localStorage.setItem(storageKey, String(Date.now()));
+      } catch {
+        // Ignore localStorage errors.
+      }
+    };
+
+    const clearCollapsedAt = () => {
+      try {
+        window.localStorage.removeItem(storageKey);
+      } catch {
+        // Ignore localStorage errors.
+      }
+    };
+
+    const expandPopup = () => {
+      window.clearTimeout(resetTimer);
+      clearCollapsedAt();
+
+      popup.classList.add("is-visible");
+      popup.classList.remove("is-collapsed");
+    };
+
+    const scheduleAutoExpand = (collapsedAt) => {
+      window.clearTimeout(resetTimer);
+
+      const elapsed = Date.now() - collapsedAt;
+      const remaining = collapsedResetMs - elapsed;
+
+      if (remaining <= 0) {
+        expandPopup();
+        return;
+      }
+
+      resetTimer = window.setTimeout(() => {
+        expandPopup();
+      }, remaining);
+    };
+
+    const collapsePopup = (shouldSave = true) => {
+      if (shouldSave) {
+        saveCollapsedAt();
+      }
+
+      const collapsedAt = getCollapsedAt() || Date.now();
+
+      popup.classList.add("is-visible");
+      popup.classList.add("is-collapsed");
+
+      scheduleAutoExpand(collapsedAt);
+    };
+
+    window.setTimeout(() => {
+      const collapsedAt = getCollapsedAt();
+
+      if (collapsedAt && Date.now() - collapsedAt < collapsedResetMs) {
+        collapsePopup(false);
+      } else {
+        expandPopup();
+      }
+    }, 1000);
+
+    collapseButton?.addEventListener("click", () => {
+      collapsePopup(true);
+    });
+
+    expandButton?.addEventListener("click", () => {
+      expandPopup();
+    });
+  })();
+</script>

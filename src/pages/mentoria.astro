@@ -1,0 +1,430 @@
+---
+import "../styles/mentoria-sales.css";
+
+const tallyId = "ZjvEl0";
+const profileImage = "/images/mentor-profile.png";
+
+const proofStats = [
+  {
+    value: "+100",
+    label: "projetos entregues",
+  },
+  {
+    value: "12",
+    label: "clientes atendidos",
+  },
+  {
+    value: "PT / EN",
+    label: "mentoria em português ou inglês",
+  },
+];
+
+const problems = [
+  {
+    icon: "/images/sales-icons/capelo.svg",
+    alt: "Ícone de capelo",
+    text: "Você já fez cursos, mas ainda não sabe transformar conhecimento em projeto vendável.",
+  },
+  {
+    icon: "/images/sales-icons/globo-asia.svg",
+    alt: "Ícone de globo",
+    text: "Você não sabe como se posicionar para vagas, freelas ou clientes internacionais.",
+  },
+  {
+    icon: "/images/sales-icons/aperto-de-maos.svg",
+    alt: "Ícone de aperto de mãos",
+    text: "Você trava para precificar, vender, montar proposta e explicar valor para empresas.",
+  },
+  {
+    icon: "/images/sales-icons/power-platform.svg",
+    alt: "Ícone Power Platform",
+    text: "Você quer trabalhar com Power Platform de forma profissional, não apenas como usuário de ferramenta.",
+  },
+];
+
+const pillars = [
+  {
+    number: "01",
+    title: "Posicionamento profissional",
+    text: "Como organizar LinkedIn, CV, portfólio e narrativa para parecer um especialista confiável, não apenas alguém que sabe usar ferramentas.",
+  },
+  {
+    number: "02",
+    title: "Entrega técnica real",
+    text: "Power BI, Power Apps, Power Automate, Dataverse, Dynamics 365, APIs, SQL e .NET aplicados a problemas de negócio.",
+  },
+  {
+    number: "03",
+    title: "Venda consultiva",
+    text: "Como conduzir primeira conversa, diagnosticar dor, montar escopo, apresentar proposta e defender valor.",
+  },
+  {
+    number: "04",
+    title: "Mercado internacional",
+    text: "Como se preparar para oportunidades na Europa e conversas com clientes estrangeiros, incluindo Reino Unido e Estados Unidos.",
+  },
+];
+
+const marketCards = [
+  {
+    title: "Trabalhar na Europa",
+    text: "Ajuste de perfil, comunicação profissional, expectativas de empresas europeias e como apresentar experiência técnica em inglês.",
+  },
+  {
+    title: "Clientes no Reino Unido e EUA",
+    text: "Como estruturar uma oferta objetiva, falar de valor, lidar com reuniões em inglês e vender automação como solução de negócio.",
+  },
+  {
+    title: "Pensar como empresa",
+    text: "Como sair da lógica de 'faço dashboards' e se posicionar como prestador de solução: diagnóstico, escopo, proposta, entrega e continuidade.",
+  },
+];
+
+const offers = [
+  {
+    title: "Consulta inicial gratuita",
+    price: "0€",
+    text: "Uma primeira conversa para entender teu momento, objetivo e se a mentoria faz sentido.",
+    cta: "Agendar consulta gratuita",
+    featured: true,
+  },
+  {
+    title: "Mentoria 1:1",
+    price: "Sob aplicação",
+    text: "Sessões práticas para acelerar carreira, projeto, portfólio, entrevistas, proposta comercial ou entrega técnica.",
+    cta: "Aplicar para mentoria",
+    featured: false,
+  },
+  {
+    title: "Acompanhamento de projeto",
+    price: "Sob escopo",
+    text: "Para quem está construindo uma solução real e precisa de revisão técnica, arquitetura, direção e boas práticas.",
+    cta: "Discutir projeto",
+    featured: false,
+  },
+];
+
+const roadmap = [
+  "Diagnóstico do teu momento atual",
+  "Definição de posicionamento e oferta",
+  "Plano técnico e comercial personalizado",
+  "Projeto ou portfólio com narrativa de negócio",
+  "Preparação para entrevistas, calls ou propostas",
+  "Próximos passos para vender ou crescer na carreira",
+];
+---
+
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Mentoria Power Platform | Bernardo Souza</title>
+    <meta
+      name="description"
+      content="Mentoria prática para profissionais que querem vender, se posicionar e crescer com Power Platform, Power BI, Power Apps, Power Automate, Dataverse, .NET e SQL. Primeira consulta gratuita."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#06111f" />
+  </head>
+
+  <body class="sales-mentor-page">
+    <a class="sales-language-switch" href="/en/mentoring/" aria-label="Switch to English">EN</a>
+
+    <main>
+      <section class="sales-hero">
+        <div class="sales-hero-bg" aria-hidden="true"></div>
+
+        <div class="sales-hero-grid">
+          <div class="sales-hero-copy">
+            <div class="sales-kicker">
+              Mentoria 1:1 · Power Platform · Vendas · Mercado internacional
+            </div>
+
+            <h1>
+              Aprenda a se posicionar, vender e entregar Power Platform como um profissional de mercado.
+            </h1>
+
+            <p class="sales-hero-lead">
+              Mentoria direta para quem quer transformar Power BI, Power Apps,
+              Power Automate, Dataverse, .NET e SQL em carreira, portfólio,
+              freelas, consultoria ou oportunidades internacionais.
+            </p>
+
+            <div class="sales-hero-actions">
+              <button
+                class="sales-primary"
+                type="button"
+                data-tally-open={tallyId}
+                data-tally-layout="modal"
+                data-tally-align-left="1"
+                data-tally-hide-title="1"
+                data-tally-transparent-background="1"
+              >
+                Quero minha consulta gratuita
+              </button>
+
+              <a class="sales-secondary" href="#mercado">
+                Ver o que vou aprender
+              </a>
+            </div>
+
+            <p class="sales-small-note">
+              Sem promessa mágica. Sem curso genérico. Direção prática para construir valor e vender melhor.
+            </p>
+          </div>
+
+          <aside class="sales-profile-stack" aria-label="Resumo da mentoria">
+            <div class="sales-photo-card">
+              <img src={profileImage} alt="Bernardo Souza" />
+
+              <div class="sales-photo-overlay">
+                <span>Mentoria prática</span>
+                <strong>Power Platform + posicionamento + vendas</strong>
+              </div>
+            </div>
+
+            <div class="sales-stat-card floating one">
+              <strong>+100</strong>
+              <span>projetos entregues</span>
+            </div>
+
+            <div class="sales-stat-card floating two">
+              <strong>12</strong>
+              <span>clientes atendidos</span>
+            </div>
+
+            <div class="sales-market-card">
+              <span>Foco</span>
+              <strong>Europa · Reino Unido · Estados Unidos</strong>
+              <p>
+                Posicionamento, comunicação e venda consultiva para oportunidades locais e internacionais.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="sales-proof-band" aria-label="Prova de experiência">
+        <div class="sales-proof-inner">
+          {
+            proofStats.map((item) => (
+              <div>
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="sales-section sales-problem-section">
+        <div class="sales-container">
+          <div class="sales-section-heading center">
+            <span>O ponto real</span>
+            <h2>O mercado não paga por ferramenta. O mercado paga por solução.</h2>
+            <p>
+              Saber clicar no Power BI, no Power Apps ou no Power Automate é só o começo.
+              O que muda tua carreira é saber diagnosticar problema, desenhar solução,
+              comunicar valor e vender tua entrega.
+            </p>
+          </div>
+
+          <div class="sales-problem-grid">
+            {
+              problems.map((item) => (
+                <article class="sales-problem-card">
+                  <div class="sales-problem-icon">
+                    <img src={item.icon} alt={item.alt} loading="lazy" />
+                  </div>
+                  <p>{item.text}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section id="mercado" class="sales-section sales-market-section">
+        <div class="sales-container sales-market-grid">
+          <div class="sales-section-heading">
+            <span>Trabalhar fora da bolha</span>
+            <h2>Eu te ajudo a pensar como consultor, freelancer ou empresa.</h2>
+            <p>
+              A mentoria não é só técnica. A ideia é te ensinar como se posicionar
+              para vender uma solução, falar com empresas e se preparar para mercados
+              mais exigentes, incluindo Europa, Reino Unido e Estados Unidos.
+            </p>
+          </div>
+
+          <div class="sales-market-list">
+            {
+              marketCards.map((item) => (
+                <article class="sales-market-item">
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section id="metodo" class="sales-section">
+        <div class="sales-container">
+          <div class="sales-section-heading center">
+            <span>O método</span>
+            <h2>Técnica, posicionamento e venda no mesmo processo.</h2>
+            <p>
+              Você não precisa escolher entre ser técnico ou saber vender.
+              O objetivo é unir as duas coisas: entregar bem e comunicar valor.
+            </p>
+          </div>
+
+          <div class="sales-pillars-grid">
+            {
+              pillars.map((item) => (
+                <article class="sales-pillar-card">
+                  <span>{item.number}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="sales-section sales-roadmap-section">
+        <div class="sales-container sales-roadmap-grid">
+          <div>
+            <div class="sales-section-heading">
+              <span>Na prática</span>
+              <h2>O que sai da mentoria não é só conselho. É plano de execução.</h2>
+              <p>
+                A primeira consulta gratuita serve para entender teu ponto de partida.
+                Depois, a mentoria pode ser organizada para carreira, freelas,
+                consultoria, entrevistas, portfólio ou projeto real.
+              </p>
+            </div>
+
+            <button
+              class="sales-primary"
+              type="button"
+              data-tally-open={tallyId}
+              data-tally-layout="modal"
+              data-tally-align-left="1"
+              data-tally-hide-title="1"
+              data-tally-transparent-background="1"
+            >
+              Começar com consulta gratuita
+            </button>
+          </div>
+
+          <div class="sales-roadmap-card">
+            {
+              roadmap.map((item, index) => (
+                <div class="sales-roadmap-row">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <p>{item}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section id="oferta" class="sales-section sales-offer-section">
+        <div class="sales-container">
+          <div class="sales-section-heading center">
+            <span>Como começar</span>
+            <h2>A primeira conversa é gratuita.</h2>
+            <p>
+              Sem compromisso. A consulta inicial serve para ver teu momento,
+              objetivo e se faz sentido seguir com mentoria.
+            </p>
+          </div>
+
+          <div class="sales-offer-grid">
+            {
+              offers.map((item) => (
+                <article class:list={["sales-offer-card", { featured: item.featured }]}>
+                  {item.featured && <span class="sales-badge">Recomendado para começar</span>}
+                  <h3>{item.title}</h3>
+                  <strong>{item.price}</strong>
+                  <p>{item.text}</p>
+                  <button
+                    type="button"
+                    class="sales-offer-button"
+                    data-tally-open={tallyId}
+                    data-tally-layout="modal"
+                    data-tally-align-left="1"
+                    data-tally-hide-title="1"
+                    data-tally-transparent-background="1"
+                  >
+                    {item.cta}
+                  </button>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="sales-final-cta">
+        <div class="sales-container sales-final-card">
+          <div>
+            <span>Próximo passo</span>
+            <h2>Quer parar de estudar sem direção e começar a se posicionar para oportunidades reais?</h2>
+            <p>
+              Preencha a aplicação. Eu vou entender teu momento e te responder
+              com o melhor caminho para começar.
+            </p>
+          </div>
+
+          <button
+            class="sales-primary"
+            type="button"
+            data-tally-open={tallyId}
+            data-tally-layout="modal"
+            data-tally-align-left="1"
+            data-tally-hide-title="1"
+            data-tally-transparent-background="1"
+          >
+            Aplicar para consulta gratuita
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="sales-footer">
+      <p>© 2026 Bernardo Souza</p>
+      <a href="mailto:bernardosantiagodesouza@gmail.com">
+        bernardosantiagodesouza@gmail.com
+      </a>
+    </footer>
+
+    <script is:inline>
+      var d = document;
+      var w = "https://tally.so/widgets/embed.js";
+
+      var v = function () {
+        if (typeof Tally !== "undefined") {
+          Tally.loadEmbeds();
+        }
+      };
+
+      if (typeof Tally !== "undefined") {
+        v();
+      } else if (d.querySelector('script[src="' + w + '"]') == null) {
+        var s = d.createElement("script");
+        s.src = w;
+        s.onload = v;
+        s.onerror = v;
+        d.body.appendChild(s);
+      }
+    </script>
+  </body>
+</html>

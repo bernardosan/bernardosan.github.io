@@ -1,0 +1,432 @@
+---
+import "../../styles/mentoria-sales.css";
+
+const tallyId = "ZjvEl0";
+const profileImage = "/images/mentor-profile.png";
+
+const proofStats = [
+  {
+    value: "+100",
+    label: "projects delivered",
+  },
+  {
+    value: "12",
+    label: "clients served",
+  },
+  {
+    value: "PT / EN",
+    label: "mentoring in English or Portuguese",
+  },
+];
+
+const problems = [
+  {
+    icon: "/images/sales-icons/capelo.svg",
+    alt: "Graduation cap icon",
+    text: "You have taken courses, but still do not know how to turn knowledge into a sellable project.",
+  },
+  {
+    icon: "/images/sales-icons/globo-asia.svg",
+    alt: "Globe icon",
+    text: "You do not know how to position yourself for jobs, freelance work or international clients.",
+  },
+  {
+    icon: "/images/sales-icons/aperto-de-maos.svg",
+    alt: "Handshake icon",
+    text: "You get stuck when pricing, selling, writing proposals and explaining value to companies.",
+  },
+  {
+    icon: "/images/sales-icons/power-platform.svg",
+    alt: "Power Platform icon",
+    text: "You want to work with Power Platform professionally, not just as someone who knows the tools.",
+  },
+];
+
+const pillars = [
+  {
+    number: "01",
+    title: "Professional positioning",
+    text: "How to organize LinkedIn, CV, portfolio and your professional narrative so you look like a reliable specialist, not just someone who knows tools.",
+  },
+  {
+    number: "02",
+    title: "Real technical delivery",
+    text: "Power BI, Power Apps, Power Automate, Dataverse, Dynamics 365, APIs, SQL and .NET applied to business problems.",
+  },
+  {
+    number: "03",
+    title: "Consultative selling",
+    text: "How to lead the first call, diagnose pain, define scope, present a proposal and defend value.",
+  },
+  {
+    number: "04",
+    title: "International market",
+    text: "How to prepare for opportunities in Europe and conversations with foreign clients, including the United Kingdom and the United States.",
+  },
+];
+
+const marketCards = [
+  {
+    title: "Working in Europe",
+    text: "Profile adjustment, professional communication, expectations from European companies and how to present technical experience in English.",
+  },
+  {
+    title: "Clients in the UK and US",
+    text: "How to structure a clear offer, speak about value, handle calls in English and sell automation as a business solution.",
+  },
+  {
+    title: "Think like a business",
+    text: "How to move beyond 'I build dashboards' and position yourself as a solution provider: diagnosis, scope, proposal, delivery and continuity.",
+  },
+];
+
+const offers = [
+  {
+    title: "Free initial consultation",
+    price: "0 EUR",
+    text: "A first conversation to understand where you are, what you want and whether mentoring makes sense for your moment.",
+    cta: "Book free consultation",
+    featured: true,
+  },
+  {
+    title: "1:1 Mentoring",
+    price: "By application",
+    text: "Practical sessions to accelerate your career, project, portfolio, interviews, commercial proposal or technical delivery.",
+    cta: "Apply for mentoring",
+    featured: false,
+  },
+  {
+    title: "Project guidance",
+    price: "By scope",
+    text: "For people building a real solution and needing technical review, architecture direction and best practices.",
+    cta: "Discuss project",
+    featured: false,
+  },
+];
+
+const roadmap = [
+  "Diagnosis of your current moment",
+  "Definition of positioning and offer",
+  "Personalized technical and commercial plan",
+  "Project or portfolio with business narrative",
+  "Preparation for interviews, calls or proposals",
+  "Next steps to sell or grow your career",
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Power Platform Mentoring | Bernardo Souza</title>
+    <meta
+      name="description"
+      content="Practical mentoring for professionals who want to sell, position themselves and grow with Power Platform, Power BI, Power Apps, Power Automate, Dataverse, .NET and SQL. Free first consultation."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="alternate" hreflang="pt" href="/mentoria/" />
+    <link rel="alternate" hreflang="en" href="/en/mentoring/" />
+    <meta name="theme-color" content="#06111f" />
+  </head>
+
+  <body class="sales-mentor-page">
+    <a class="sales-language-switch" href="/mentoria/" aria-label="Ver em portugues">PT</a>
+
+    <main>
+      <section class="sales-hero">
+        <div class="sales-hero-bg" aria-hidden="true"></div>
+
+        <div class="sales-hero-grid">
+          <div class="sales-hero-copy">
+            <div class="sales-kicker">
+              1:1 Mentoring · Power Platform · Sales · International market
+            </div>
+
+            <h1>
+              Learn how to position, sell and deliver Power Platform like a market-ready professional.
+            </h1>
+
+            <p class="sales-hero-lead">
+              Direct mentoring for people who want to turn Power BI, Power Apps,
+              Power Automate, Dataverse, .NET and SQL into career growth,
+              portfolio, freelance work, consulting or international opportunities.
+            </p>
+
+            <div class="sales-hero-actions">
+              <button
+                class="sales-primary"
+                type="button"
+                data-tally-open={tallyId}
+                data-tally-layout="modal"
+                data-tally-align-left="1"
+                data-tally-hide-title="1"
+                data-tally-transparent-background="1"
+              >
+                I want my free consultation
+              </button>
+
+              <a class="sales-secondary" href="#market">
+                See what I will learn
+              </a>
+            </div>
+
+            <p class="sales-small-note">
+              No magic promises. No generic course. Practical direction to build value and sell better.
+            </p>
+          </div>
+
+          <aside class="sales-profile-stack" aria-label="Mentoring summary">
+            <div class="sales-photo-card">
+              <img src={profileImage} alt="Bernardo Souza" />
+
+              <div class="sales-photo-overlay">
+                <span>Practical mentoring</span>
+                <strong>Power Platform + positioning + sales</strong>
+              </div>
+            </div>
+
+            <div class="sales-stat-card floating one">
+              <strong>+100</strong>
+              <span>projects delivered</span>
+            </div>
+
+            <div class="sales-stat-card floating two">
+              <strong>12</strong>
+              <span>clients served</span>
+            </div>
+
+            <div class="sales-market-card">
+              <span>Focus</span>
+              <strong>Europe · United Kingdom · United States</strong>
+              <p>
+                Positioning, communication and consultative selling for local and international opportunities.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="sales-proof-band" aria-label="Experience proof">
+        <div class="sales-proof-inner">
+          {
+            proofStats.map((item) => (
+              <div>
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section class="sales-section sales-problem-section">
+        <div class="sales-container">
+          <div class="sales-section-heading center">
+            <span>The real point</span>
+            <h2>The market does not pay for tools. It pays for solutions.</h2>
+            <p>
+              Knowing how to click inside Power BI, Power Apps or Power Automate is just the beginning.
+              What changes your career is knowing how to diagnose problems, design solutions,
+              communicate value and sell your delivery.
+            </p>
+          </div>
+
+          <div class="sales-problem-grid">
+            {
+              problems.map((item) => (
+                <article class="sales-problem-card">
+                  <div class="sales-problem-icon">
+                    <img src={item.icon} alt={item.alt} loading="lazy" />
+                  </div>
+                  <p>{item.text}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section id="market" class="sales-section sales-market-section">
+        <div class="sales-container sales-market-grid">
+          <div class="sales-section-heading">
+            <span>Work beyond your local bubble</span>
+            <h2>I help you think like a consultant, freelancer or business.</h2>
+            <p>
+              This mentoring is not only technical. The idea is to teach you how to position yourself
+              to sell a solution, speak with companies and prepare for more demanding markets,
+              including Europe, the United Kingdom and the United States.
+            </p>
+          </div>
+
+          <div class="sales-market-list">
+            {
+              marketCards.map((item) => (
+                <article class="sales-market-item">
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section id="method" class="sales-section">
+        <div class="sales-container">
+          <div class="sales-section-heading center">
+            <span>The method</span>
+            <h2>Technical delivery, positioning and sales in the same process.</h2>
+            <p>
+              You do not need to choose between being technical and knowing how to sell.
+              The goal is to combine both: deliver well and communicate value.
+            </p>
+          </div>
+
+          <div class="sales-pillars-grid">
+            {
+              pillars.map((item) => (
+                <article class="sales-pillar-card">
+                  <span>{item.number}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="sales-section sales-roadmap-section">
+        <div class="sales-container sales-roadmap-grid">
+          <div>
+            <div class="sales-section-heading">
+              <span>In practice</span>
+              <h2>What comes out of mentoring is not just advice. It is an execution plan.</h2>
+              <p>
+                The free first consultation exists to understand your starting point.
+                After that, mentoring can be organized around career, freelance work,
+                consulting, interviews, portfolio or a real project.
+              </p>
+            </div>
+
+            <button
+              class="sales-primary"
+              type="button"
+              data-tally-open={tallyId}
+              data-tally-layout="modal"
+              data-tally-align-left="1"
+              data-tally-hide-title="1"
+              data-tally-transparent-background="1"
+            >
+              Start with a free consultation
+            </button>
+          </div>
+
+          <div class="sales-roadmap-card">
+            {
+              roadmap.map((item, index) => (
+                <div class="sales-roadmap-row">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <p>{item}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section id="offer" class="sales-section sales-offer-section">
+        <div class="sales-container">
+          <div class="sales-section-heading center">
+            <span>How to start</span>
+            <h2>The first conversation is free.</h2>
+            <p>
+              No commitment. The initial consultation is used to understand your moment,
+              your goal and whether it makes sense to continue with mentoring.
+            </p>
+          </div>
+
+          <div class="sales-offer-grid">
+            {
+              offers.map((item) => (
+                <article class:list={["sales-offer-card", { featured: item.featured }]}>
+                  {item.featured && <span class="sales-badge">Recommended to start</span>}
+                  <h3>{item.title}</h3>
+                  <strong>{item.price}</strong>
+                  <p>{item.text}</p>
+                  <button
+                    type="button"
+                    class="sales-offer-button"
+                    data-tally-open={tallyId}
+                    data-tally-layout="modal"
+                    data-tally-align-left="1"
+                    data-tally-hide-title="1"
+                    data-tally-transparent-background="1"
+                  >
+                    {item.cta}
+                  </button>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="sales-final-cta">
+        <div class="sales-container sales-final-card">
+          <div>
+            <span>Next step</span>
+            <h2>Want to stop studying without direction and start positioning yourself for real opportunities?</h2>
+            <p>
+              Fill out the application. I will understand your moment and reply
+              with the best path to start.
+            </p>
+          </div>
+
+          <button
+            class="sales-primary"
+            type="button"
+            data-tally-open={tallyId}
+            data-tally-layout="modal"
+            data-tally-align-left="1"
+            data-tally-hide-title="1"
+            data-tally-transparent-background="1"
+          >
+            Apply for free consultation
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="sales-footer">
+      <p>© 2026 Bernardo Souza</p>
+      <a href="mailto:bernardosantiagodesouza@gmail.com">
+        bernardosantiagodesouza@gmail.com
+      </a>
+    </footer>
+
+    <script is:inline>
+      var d = document;
+      var w = "https://tally.so/widgets/embed.js";
+
+      var v = function () {
+        if (typeof Tally !== "undefined") {
+          Tally.loadEmbeds();
+        }
+      };
+
+      if (typeof Tally !== "undefined") {
+        v();
+      } else if (d.querySelector('script[src="' + w + '"]') == null) {
+        var s = d.createElement("script");
+        s.src = w;
+        s.onload = v;
+        s.onerror = v;
+        d.body.appendChild(s);
+      }
+    </script>
+  </body>
+</html>
