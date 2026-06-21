@@ -1,0 +1,2023 @@
+---
+import "../../styles/global.css";
+import MentoringPopup from "../../components/MentoringPopup.astro";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>PL-400 Practice Questions | Bernardo Souza</title>
+    <meta
+      name="description"
+      content="Interactive PL-400 practice questions with randomized order, optional answer review, a 70% practice passing score and a final diagnosis."
+    />
+    <link rel="canonical" href="/en/pl400-mock-test/" />
+    <link rel="alternate" hreflang="en" href="/en/pl400-mock-test/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <meta name="theme-color" content="#2563eb" />
+  </head>
+
+  <body class="pl400-page">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/en/">
+          <span class="brand-mark brand-mark-logo" aria-hidden="true"><img src="/favicon.svg" alt="" /></span>
+          <span class="brand-text">
+            <strong>Bernardo Souza</strong>
+            <small>Power Platform & Data Solutions</small>
+          </span>
+        </a>
+
+        <nav class="main-nav">
+          <a href="/en/#ecosystem">Ecosystem</a>
+          <a href="/en/#capabilities">Capabilities</a>
+          <a href="/en/#use-cases">Use cases</a>
+          <a href="/en/#process">Delivery</a>
+          <a href="/en/#contact">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <div class="language-switch" aria-label="Language">
+            <span class="language-globe">🌐</span>
+            <a class="active" href="/en/pl400-mock-test/" aria-current="page">EN</a>
+          </div>
+
+          <a class="header-button" href="/en/#contact">Request assessment</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="platform-section pl400-quiz-section" aria-labelledby="page-title">
+        <div class="container">
+          <header class="pl400-page-header">
+            <h1 id="page-title">PL-400 Practice Questions</h1>
+            <p>
+              A randomized set of PL-400 practice questions to check your understanding
+              and identify the areas that deserve more review.
+            </p>
+          </header>
+
+          <div class="pl400-progress-card">
+            <div>
+              <span>Practice questions</span>
+              <strong id="progressText">0 of 0 answered</strong>
+              <small class="pl400-progress-note">Select an answer to count it. The answer key stays hidden unless you choose Show answer.</small>
+            </div>
+            <div class="pl400-progress-side">
+              <div class="pl400-progress-wrap" aria-hidden="true">
+                <div class="pl400-progress-bar" id="progressBar"></div>
+              </div>
+              <button class="secondary-button pl400-action-button" type="button" id="shuffleAgain">
+                Shuffle questions
+              </button>
+            </div>
+          </div>
+
+          <section class="pl400-question-list" id="quizContainer" aria-live="polite"></section>
+
+          <section class="pl400-final-card" id="finalPanel">
+            <div class="section-heading">
+              <span>Complete review</span>
+              <h2>See your final result.</h2>
+              <p>
+                Your selections are saved as you answer. Use this button when you finish
+                to open the full review, compare your score against the 70% passing score,
+                and get a short study diagnosis.
+              </p>
+            </div>
+
+            <button class="primary-button pl400-action-button" type="button" id="showFinalResult">
+              Show complete result
+            </button>
+
+            <div id="finalResult" class="hidden"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        <strong>Bernardo Souza</strong>
+        <p>Power Platform · Business Intelligence · Automation · Integration</p>
+      </div>
+
+      <p><a href="/en/privacy/">Privacy Policy</a></p>
+
+      <p>&copy; 2026. All rights reserved.</p>
+    </footer>
+
+    <MentoringPopup lang="en" />
+
+    <script is:inline>
+      const MAX_QUESTIONS = 50;
+      const PASSING_SCORE = 70;
+
+      const questions = [
+        {
+                "id": 1,
+                "sourceLabel": "Sample Question #1",
+                "type": "choice",
+                "text": "You are developing a model-driven app using JavaScript. You need to configure the app to display a dialog box when a form is opened or when a grid on a form is sorted. What should you use?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Grid OnSave"
+                        },
+                        {
+                                "key": "B",
+                                "text": "Grid OnRecordSelect"
+                        },
+                        {
+                                "key": "C",
+                                "text": "Grid OnChange"
+                        },
+                        {
+                                "key": "D",
+                                "text": "Subgrid OnLoad"
+                        }
+                ],
+                "answers": [
+                        "D"
+                ]
+        },
+        {
+                "id": 2,
+                "sourceLabel": "Sample Question #2",
+                "type": "choice",
+                "text": "A company is testing a Microsoft Dataverse plug-in in an environment. The plug-in works in postoperation mode and performs the update of the Account entity. During testing, a user observes that the plug-in unintentionally triggers a synchronous third-party ISV plug-in. You need to modify the system design to avoid unwanted triggering of the third-party plug-in. What should you do?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Disable the existing third-party plug-in by using the Plug-in Registration Tool."
+                        },
+                        {
+                                "key": "B",
+                                "text": "Use UpdateRequest with the BypassCustomPluginExecution parameter and Execute method of the Organization service."
+                        },
+                        {
+                                "key": "C",
+                                "text": "Update the code of the third-party ISV plug-in to ignore updates caused by the new plug-in."
+                        },
+                        {
+                                "key": "D",
+                                "text": "Update the code of the new plug-in to use InputParameters of Plugin Execution Context."
+                        }
+                ],
+                "answers": [
+                        "B"
+                ]
+        },
+        {
+                "id": 3,
+                "sourceLabel": "Sample Question #3",
+                "type": "choice",
+                "text": "You are creating a canvas app to retrieve user sign in information from Microsoft Entra ID when someone searches for information about an end user. You create an Azure Function to retrieve the required information by using JSON. You need to ensure that the application functions correctly. Which two actions should you perform? Each correct answer presents part of the solution. NOTE: Each correct selection is worth one point.",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Use Azure Service Bus."
+                        },
+                        {
+                                "key": "B",
+                                "text": "Use app designer in the Power Platform admin center."
+                        },
+                        {
+                                "key": "C",
+                                "text": "Create a custom connector by using the Azure Function API."
+                        },
+                        {
+                                "key": "D",
+                                "text": "Create a Power Automate flow to import data."
+                        },
+                        {
+                                "key": "E",
+                                "text": "Create an API definition for the Azure Function."
+                        }
+                ],
+                "answers": [
+                        "C",
+                        "E"
+                ]
+        },
+        {
+                "id": 4,
+                "sourceLabel": "Sample Question #4",
+                "type": "choice",
+                "text": "A company designs data integration with an external system by using virtual tables. You need to implement the virtual tables. Solution: Use a table that has a GUID as its primary key. Does the solution meet the goal?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Yes"
+                        },
+                        {
+                                "key": "B",
+                                "text": "No"
+                        }
+                ],
+                "answers": [
+                        "A"
+                ],
+                "explanation": "If all entities in the external data source have an associated GUID primary key, virtual tables can be implemented."
+        },
+        {
+                "id": 5,
+                "sourceLabel": "Sample Question #5",
+                "type": "choice",
+                "text": "A company designs data integration with an external system by using virtual tables. You need to implement the virtual tables. Solution: Create a calculated column on the virtual table. Does the solution meet the goal?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Yes"
+                        },
+                        {
+                                "key": "B",
+                                "text": "No"
+                        }
+                ],
+                "answers": [
+                        "B"
+                ]
+        },
+        {
+                "id": 6,
+                "sourceLabel": "Sample Question #6",
+                "type": "choice",
+                "text": "A company designs data integration with an external system by using virtual tables. You need to implement the virtual tables. Solution: Implement an OData v4 provider as the data source. Does the solution meet the goal?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Yes"
+                        },
+                        {
+                                "key": "B",
+                                "text": "No"
+                        }
+                ],
+                "answers": [
+                        "B"
+                ]
+        },
+        {
+                "id": 7,
+                "sourceLabel": "Sample Question #7",
+                "type": "choice",
+                "text": "Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution. After you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen.\n\nYou are designing a one-way integration from Microsoft Dataverse to another system. You must use an Azure Function to update the other system. The integration must send only newly created records to the other system. The solution must support scenarios where a component of the integration is unavailable for more than a few seconds to avoid data loss. You need to design the integration solution.\n\nSolution: Register a webhook in the Dataverse instance that connects to the Azure Function. Register a step on the webhook which runs synchronously on the record's Create message and in the postoperation stage. Does the solution meet the goal?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Yes"
+                        },
+                        {
+                                "key": "B",
+                                "text": "No"
+                        }
+                ],
+                "answers": [
+                        "B"
+                ]
+        },
+        {
+                "id": 8,
+                "sourceLabel": "Sample Question #8",
+                "type": "choice",
+                "text": "You create a custom API. You define the API as a function. The custom API does not appear in the response received from https://[yourorg].api.crm.dynamics.com/api/data/v9.2/$metadata and returns an error when called. You need to identify why the custom API is not working. What should you do?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Add a response property to the custom API."
+                        },
+                        {
+                                "key": "B",
+                                "text": "Set the Is Private property of the custom API to False."
+                        },
+                        {
+                                "key": "C",
+                                "text": "Add a request property to the custom API."
+                        },
+                        {
+                                "key": "D",
+                                "text": "Set the Enabled for Workflow option of the custom API to True."
+                        }
+                ],
+                "answers": [
+                        "B"
+                ]
+        },
+        {
+                "id": 9,
+                "sourceLabel": "Sample Question #9",
+                "type": "choice",
+                "text": "Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution. After you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen.\n\nA company requires custom validation when users save form records that use a synchronous plug-in. If validation fails, a message that explains how to resolve the issue must be displayed on the form to the user. You need to implement the custom validation.\n\nSolution: Include the message in the output parameters of the plug-in. Does the solution meet the goal?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Yes"
+                        },
+                        {
+                                "key": "B",
+                                "text": "No"
+                        }
+                ],
+                "answers": [
+                        "B"
+                ]
+        },
+        {
+                "id": 10,
+                "sourceLabel": "Sample Question #10",
+                "type": "choice",
+                "text": "Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution. After you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear in the review screen.\n\nA company requires custom validation when users save form records that use a synchronous plug-in. If validation fails, a message that explains how to resolve the issue must be displayed on the form to the user. You need to implement the custom validation.\n\nSolution: Throw an InvalidPluginExecutionException with the message. Does the solution meet the goal?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Yes"
+                        },
+                        {
+                                "key": "B",
+                                "text": "No"
+                        }
+                ],
+                "answers": [
+                        "B"
+                ]
+        },
+        {
+                "id": 11,
+                "sourceLabel": "Sample Question #11",
+                "type": "choice",
+                "text": "Which permissions does a managed identity have on Microsoft Dataverse data?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Permissions assigned to the corresponding application user."
+                        },
+                        {
+                                "key": "B",
+                                "text": "Permissions assigned to the user triggering the Azure resource."
+                        },
+                        {
+                                "key": "C",
+                                "text": "Permissions equivalent to the environment admin role."
+                        },
+                        {
+                                "key": "D",
+                                "text": "Permissions equivalent to the system administrator role."
+                        }
+                ],
+                "answers": [
+                        "A"
+                ]
+        },
+        {
+                "id": 12,
+                "sourceLabel": "Sample Question #12",
+                "type": "choice",
+                "text": "You are configuring a custom connector for a web service. The web service is hosted in two different regions. The web service URL includes a common domain name and a unique sub-domain for each region. The custom connector must allow the region to be entered for additional regions when creating the connection. You need to create a policy template. Which template type should you use?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Route request"
+                        },
+                        {
+                                "key": "B",
+                                "text": "Set query string parameter"
+                        },
+                        {
+                                "key": "C",
+                                "text": "Set host URL"
+                        },
+                        {
+                                "key": "D",
+                                "text": "Set HTTP header"
+                        }
+                ],
+                "answers": [
+                        "C"
+                ]
+        },
+        {
+                "id": 13,
+                "sourceLabel": "Sample Question #13",
+                "type": "choice",
+                "text": "A company designs a solution that contains a new real-time workflow. The workflow populates a lookup column that has a default value. A managed solution is imported to the test environment. An error occurs when a test engineer attempts to create a record. The error message states, \"Record is not available.\" You need to resolve the error. What should you do?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Add missing lookup table records to the solution."
+                        },
+                        {
+                                "key": "B",
+                                "text": "Go to the test environment and manually create missing lookup table records."
+                        },
+                        {
+                                "key": "C",
+                                "text": "Use the Configuration Migration Tool to extract the lookup table data from the development environment and import it to the test environment."
+                        }
+                ],
+                "answers": [
+                        "C"
+                ]
+        },
+        {
+                "id": 14,
+                "sourceLabel": "Topic 1 - Question #1",
+                "type": "choice",
+                "text": "A company manages capital equipment for an electric utility company. The company has a SQL Server database that contains maintenance records for the equipment. Technicians who service the equipment use the Dynamics 365 Field Service mobile app on tablet devices to view scheduled assignments. Technicians use a canvas app to display the maintenance history for each piece of equipment and update the history. Managers use a Power BI dashboard that displays Dynamics 365 Field Service and real-time maintenance data. Due to increasing demand, managers must be able to work in the field as technicians. You need to design a solution that allows the managers to work from one single screen. What should you do?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Add the maintenance history app to the Field Service Mobile app."
+                        },
+                        {
+                                "key": "B",
+                                "text": "Add the manager Power BI dashboard to the Field Service mobile app."
+                        },
+                        {
+                                "key": "C",
+                                "text": "Create a new maintenance canvas app from within the Power BI management dashboard."
+                        },
+                        {
+                                "key": "D",
+                                "text": "Add the maintenance history app to the Power BI dashboard."
+                        }
+                ],
+                "answers": [
+                        "D"
+                ]
+        },
+        {
+                "id": 15,
+                "sourceLabel": "Topic 1 - Question #2",
+                "type": "matrix",
+                "badge": "Hotspot",
+                "text": "You work for a staffing company that helps employees fill temporary jobs. Available temporary jobs are categorized and listed on a secure area of the company's website. The company wants to eliminate manual work that relates to job and candidate management. The company plans to invite employers with available jobs and job candidates to view jobs by sending personalized invitations. The company identifies several requirements. Which features should you implement? Select the appropriate option for each requirement.",
+                "rows": [
+                        {
+                                "id": "portal",
+                                "requirement": "Create the job listings portal.",
+                                "label": "Feature",
+                                "options": [
+                                        "Custom self-service portal for employers and a custom page for job candidates",
+                                        "Custom self-service portal for both employers and job candidates",
+                                        "Portal for job candidates and a custom self-service portal for employers",
+                                        "Portal from blank for job candidates and employers"
+                                ],
+                                "answer": "Custom self-service portal for both employers and job candidates"
+                        },
+                        {
+                                "id": "positionsApp",
+                                "requirement": "Create an app that lists available positions.",
+                                "label": "Feature",
+                                "options": [
+                                        "Canvas app with push notifications",
+                                        "Model-driven app with push notifications",
+                                        "Portal app with push notifications"
+                                ],
+                                "answer": "Model-driven app with push notifications"
+                        },
+                        {
+                                "id": "employerApp",
+                                "requirement": "Create the app for employers who are seeking temporary employees.",
+                                "label": "Feature",
+                                "options": [
+                                        "Entity form defined on the job custom entity",
+                                        "Webform with target set to the job custom entity",
+                                        "Web page defined on the job custom entity",
+                                        "Web step with target set to the job custom entity"
+                                ],
+                                "answer": "Webform with target set to the job custom entity"
+                        },
+                        {
+                                "id": "candidateInvite",
+                                "requirement": "Create invitation parameters for job candidates.",
+                                "label": "Feature",
+                                "options": [
+                                        "Configure a value for the Assigned to Account option only.",
+                                        "Configure a value for the Execute Workflow on Redeeming Contact option only.",
+                                        "Configure values for Assigned to Account and Execute Workflow on Redeeming Contact.",
+                                        "Leave both Assigned to Account and Execute Workflow on Redeeming Contact empty."
+                                ],
+                                "answer": "Configure a value for the Execute Workflow on Redeeming Contact option only."
+                        },
+                        {
+                                "id": "approvedInvite",
+                                "requirement": "Create invitation parameters for approved job candidates.",
+                                "label": "Feature",
+                                "options": [
+                                        "Configure a value for the Assigned to Account option only.",
+                                        "Configure a value for the Execute Workflow on Redeeming Contact option only.",
+                                        "Configure values for Assigned to Account and Execute Workflow on Redeeming Contact.",
+                                        "Leave both Assigned to Account and Execute Workflow on Redeeming Contact empty."
+                                ],
+                                "answer": "Configure a value for the Assigned to Account option only."
+                        }
+                ],
+                "explanation": "This hotspot uses portals, a model-driven app with push notifications, webforms, and invitation settings for redeeming contacts."
+        },
+        {
+                "id": 16,
+                "sourceLabel": "Topic 1 - Question #3",
+                "type": "matrix",
+                "badge": "Hotspot",
+                "text": "You create a suite of Power Platform-based order management canvas apps for a bakery that has five retail stores. Each store uses a tablet device to manage inventory and process orders. You need to make changes to the original order tracking app and minimize custom code and configuration. What should you use? Select the appropriate implementation option for each requirement.",
+                "explanationImage": "/images/pl400/q3-explanation.png",
+                "rows": [
+                        {
+                                "id": "closestStore",
+                                "requirement": "Determine which store is closest to the order destination.",
+                                "label": "Implementation option",
+                                "options": [
+                                        "Power Automate flow",
+                                        "Plug-in",
+                                        "Logic app"
+                                ],
+                                "answer": "Power Automate flow"
+                        },
+                        {
+                                "id": "estimateTime",
+                                "requirement": "Estimate the time required to prepare an order and notify the customer.",
+                                "label": "Implementation option",
+                                "options": [
+                                        "New screen in an existing order canvas app",
+                                        "New canvas app",
+                                        "New logic app"
+                                ],
+                                "answer": "New screen in an existing order canvas app"
+                        },
+                        {
+                                "id": "newsletter",
+                                "requirement": "Send the newsletter by email to customers.",
+                                "label": "Implementation option",
+                                "options": [
+                                        "Power Automate flow triggered from an email button",
+                                        "Power Automate flow triggered manually",
+                                        "Power Automate UI flow triggered from an email button"
+                                ],
+                                "answer": "Power Automate flow triggered from an email button"
+                        }
+                ],
+                "explanation": "Use Power Automate for low-code automation, extend the existing canvas app for the order preparation step, and trigger the email process from a button."
+        },
+        {
+                "id": 17,
+                "sourceLabel": "Topic 1 - Question #4",
+                "type": "choice",
+                "text": "A company has an application that provides API access. You plan to connect to the API from a canvas app by using a custom connector. You need to request information from the API developers so that you can create the custom connector. Which two types of files can you use? Each correct answer presents a complete solution. NOTE: Each correct selection is worth one point.",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "YAML"
+                        },
+                        {
+                                "key": "B",
+                                "text": "WSDL"
+                        },
+                        {
+                                "key": "C",
+                                "text": "OpenAPI definition"
+                        },
+                        {
+                                "key": "D",
+                                "text": "Postman collection"
+                        }
+                ],
+                "answers": [
+                        "C",
+                        "D"
+                ]
+        },
+        {
+                "id": 18,
+                "sourceLabel": "Topic 1 - Question #5",
+                "type": "choice",
+                "text": "You plan to create a canvas app to manage large sets of records. Users will filter and sort the data. You must implement delegation in the canvas app to mitigate potential performance issues. You need to recommend data sources for the app. Which two data sources should you recommend? Each correct answer presents a complete solution. NOTE: Each correct selection is worth one point.",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "SQL Server"
+                        },
+                        {
+                                "key": "B",
+                                "text": "Common Data Service"
+                        },
+                        {
+                                "key": "C",
+                                "text": "Azure Data Factory"
+                        },
+                        {
+                                "key": "D",
+                                "text": "Azure Table Storage"
+                        }
+                ],
+                "answers": [
+                        "A",
+                        "B"
+                ]
+        },
+        {
+                "id": 19,
+                "sourceLabel": "Topic 1 - Question #6",
+                "type": "matrix",
+                "badge": "Hotspot",
+                "text": "A client is deploying Dynamics 365 Finance without any third-party add-ons. You need to select the appropriate solutions for the client. Select the appropriate solution for each scenario.",
+                "rows": [
+                        {
+                                "id": "barcode",
+                                "requirement": "Warehouse employees can use mobile devices to scan barcodes by using Dynamics 365 Finance.",
+                                "label": "Solution",
+                                "options": [
+                                        "Out-of-the-box",
+                                        "Logic apps",
+                                        "Power Automate",
+                                        "Common Data Service"
+                                ],
+                                "answer": "Out-of-the-box"
+                        },
+                        {
+                                "id": "technicianText",
+                                "requirement": "The location of field technicians can be communicated with a text message from Dynamics 365 Field Service.",
+                                "label": "Solution",
+                                "options": [
+                                        "Common Data Service",
+                                        "Workflow",
+                                        "Power Automate"
+                                ],
+                                "answer": "Power Automate"
+                        }
+                ],
+                "explanation": "Barcode scanning is supported out of the box, and Power Automate can be used for mobile processes such as alerts and notifications."
+        },
+        {
+                "id": 20,
+                "sourceLabel": "Topic 1 - Question #7",
+                "type": "matrix",
+                "badge": "Drag and drop",
+                "text": "A company uses Microsoft 365. You are developing a model-driven app. The app must use SharePoint Online for document storage and send emails by using Exchange Online. What should you configure? Select the correct configuration option for each requirement.",
+                "rows": [
+                        {
+                                "id": "email",
+                                "requirement": "Email",
+                                "label": "Configuration option",
+                                "options": [
+                                        "Server-side synchronization",
+                                        "Server-based integration",
+                                        "Dual-write",
+                                        "System settings"
+                                ],
+                                "answer": "Server-side synchronization"
+                        },
+                        {
+                                "id": "documentStorage",
+                                "requirement": "Document storage",
+                                "label": "Configuration option",
+                                "options": [
+                                        "Server-side synchronization",
+                                        "Server-based integration",
+                                        "Dual-write",
+                                        "System settings"
+                                ],
+                                "answer": "Server-based integration"
+                        }
+                ],
+                "explanation": "Exchange Online email processing uses server-side synchronization. SharePoint document management uses server-based SharePoint integration."
+        },
+        {
+                "id": 21,
+                "sourceLabel": "Topic 1 - Question #8",
+                "type": "choice",
+                "text": "A company plans to create an order processing app. When orders are created, the app will perform complex business logic and integrate with several external systems. Orders that have a large number of line items may take up to six minutes to complete. Processing for each order must be completed in one operation to avoid leaving records in an incomplete state. You need to recommend a solution for the company. What should you recommend?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "An asynchronous workflow that uses a custom workflow activity"
+                        },
+                        {
+                                "key": "B",
+                                "text": "A real-time workflow that uses a custom action"
+                        },
+                        {
+                                "key": "C",
+                                "text": "A webhook that connects to an Azure Function"
+                        },
+                        {
+                                "key": "D",
+                                "text": "An asynchronous plug-in"
+                        }
+                ],
+                "answers": [
+                        "B"
+                ],
+                "explanation": "This was the only added question without an answer in the provided text. I set the answer to B based on the matching PL-400 question references I found."
+        },
+        {
+                "id": 22,
+                "sourceLabel": "Topic 1 - Question #9",
+                "type": "matrix",
+                "badge": "Hotspot",
+                "text": "You work for a not-for-profit agency that manages business processes by using Power Platform custom entities. Volunteer registration and onboarding are manual processes that include multiple related entities. You need to implement a portal solution that replaces the manual processes. Which modules should you use? Select the appropriate module for each requirement.",
+                "rows": [
+                        {
+                                "id": "portalTemplate",
+                                "requirement": "Create a portal by using a portal template.",
+                                "label": "Module",
+                                "options": [
+                                        "Starter portal",
+                                        "Community portal",
+                                        "Customer self-service portal"
+                                ],
+                                "answer": "Customer self-service portal"
+                        },
+                        {
+                                "id": "volunteerRegistration",
+                                "requirement": "Manage volunteer registration.",
+                                "label": "Module",
+                                "options": [
+                                        "Entity form metadata",
+                                        "Webform",
+                                        "Webform step"
+                                ],
+                                "answer": "Webform"
+                        }
+                ]
+        },
+        {
+                "id": 23,
+                "sourceLabel": "Topic 1 - Question #10",
+                "type": "choice",
+                "text": "You are implementing custom business logic in a Power Apps portal. You need to use Liquid templates to display dynamic content. To which three entities can you include Liquid code? Each correct answer presents a complete solution. NOTE: Each correct selection is worth one point.",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Content snippet"
+                        },
+                        {
+                                "key": "B",
+                                "text": "Web page"
+                        },
+                        {
+                                "key": "C",
+                                "text": "Web template"
+                        },
+                        {
+                                "key": "D",
+                                "text": "Page template"
+                        },
+                        {
+                                "key": "E",
+                                "text": "Portal settings"
+                        }
+                ],
+                "answers": [
+                        "A",
+                        "B",
+                        "C"
+                ]
+        },
+        {
+                "id": 24,
+                "sourceLabel": "Added Question #11",
+                "type": "matrix",
+                "badge": "Drag and drop",
+                "text": "Teachers in a school district use Azure skill bots to teach specific classes. Students sign into an online portal to submit completed homework to their teacher for review. Students use a Power Virtual Agents chatbot to request help from teachers. You need to incorporate the skill bot for each class into the homework bot. Which three actions should you perform in sequence?",
+                "rows": [
+                        {
+                                "id": "step1",
+                                "requirement": "Step 1",
+                                "label": "Action",
+                                "options": [
+                                        "Create a manifest for the skill bot.",
+                                        "Register the skill bot in Azure Active Directory.",
+                                        "Register the homework bot in Power Virtual Agents.",
+                                        "Register the homework bot in Azure Active Directory.",
+                                        "Create a manifest for the homework bot.",
+                                        "Register the skill bot in Power Virtual Agents."
+                                ],
+                                "answer": "Register the skill bot in Azure Active Directory."
+                        },
+                        {
+                                "id": "step2",
+                                "requirement": "Step 2",
+                                "label": "Action",
+                                "options": [
+                                        "Create a manifest for the skill bot.",
+                                        "Register the skill bot in Azure Active Directory.",
+                                        "Register the homework bot in Power Virtual Agents.",
+                                        "Register the homework bot in Azure Active Directory.",
+                                        "Create a manifest for the homework bot.",
+                                        "Register the skill bot in Power Virtual Agents."
+                                ],
+                                "answer": "Create a manifest for the skill bot."
+                        },
+                        {
+                                "id": "step3",
+                                "requirement": "Step 3",
+                                "label": "Action",
+                                "options": [
+                                        "Create a manifest for the skill bot.",
+                                        "Register the skill bot in Azure Active Directory.",
+                                        "Register the homework bot in Power Virtual Agents.",
+                                        "Register the homework bot in Azure Active Directory.",
+                                        "Create a manifest for the homework bot.",
+                                        "Register the skill bot in Power Virtual Agents."
+                                ],
+                                "answer": "Register the skill bot in Power Virtual Agents."
+                        }
+                ],
+                "explanation": "Register the skill bot in Azure AD, create the skill manifest, and then register the skill with Power Virtual Agents so the homework bot can call it."
+        },
+        {
+                "id": 25,
+                "sourceLabel": "Added Question #12",
+                "type": "choice",
+                "text": "A company is migrating from an on-premises Dynamics 365 installation to a Power Platform solution. You are creating plug-ins for the new solution. You need to register the plug-ins. Which isolation mode should you use?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "None"
+                        },
+                        {
+                                "key": "B",
+                                "text": "Global Assembly Cache (GAC)"
+                        },
+                        {
+                                "key": "C",
+                                "text": "Sandbox"
+                        },
+                        {
+                                "key": "D",
+                                "text": "Disk"
+                        }
+                ],
+                "answers": [
+                        "C"
+                ]
+        },
+        {
+                "id": 26,
+                "sourceLabel": "Added Question #13",
+                "type": "choice",
+                "text": "An organization uses a public-facing Power Apps portal. You need to change the layout of a specific web page. What are two possible ways to achieve the goal? Each correct answer presents a complete solution. NOTE: Each correct selection is worth one point.",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Select the Portal Management app and then select Edit."
+                        },
+                        {
+                                "key": "B",
+                                "text": "Select the Portal Management app and then select Play."
+                        },
+                        {
+                                "key": "C",
+                                "text": "Select the portal app and then select Manage."
+                        },
+                        {
+                                "key": "D",
+                                "text": "Select the portal app and then select Edit."
+                        }
+                ],
+                "answers": [
+                        "B",
+                        "D"
+                ]
+        },
+        {
+                "id": 27,
+                "sourceLabel": "Added Question #14",
+                "type": "choice",
+                "text": "You are building a custom application in Azure to process resumes for the HR department. The app will monitor submissions of resumes and parse the resumes. You need to parse the resumes and save contact and skills information into Microsoft Dataverse. Which mechanism should you use?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Power Automate"
+                        },
+                        {
+                                "key": "B",
+                                "text": "Dataverse plug-in"
+                        },
+                        {
+                                "key": "C",
+                                "text": "Web API"
+                        },
+                        {
+                                "key": "D",
+                                "text": "Custom workflow activity"
+                        }
+                ],
+                "answers": [
+                        "C"
+                ]
+        },
+        {
+                "id": 28,
+                "sourceLabel": "Added Question #15",
+                "type": "matrix",
+                "badge": "Drag and drop",
+                "text": "You are researching integrations with several external systems. Each integration has different requirements. You need to determine which data sources to use to meet each requirement. What should you use?",
+                "rows": [
+                        {
+                                "id": "integerKey",
+                                "requirement": "Support records that use an integer as a primary key.",
+                                "label": "Object",
+                                "options": [
+                                        "Virtual entity",
+                                        "Custom connector"
+                                ],
+                                "answer": "Custom connector"
+                        },
+                        {
+                                "id": "readUpdate",
+                                "requirement": "Ensure that data can be read and updated.",
+                                "label": "Object",
+                                "options": [
+                                        "Virtual entity",
+                                        "Custom connector"
+                                ],
+                                "answer": "Custom connector"
+                        },
+                        {
+                                "id": "dataverseClients",
+                                "requirement": "Ensure that data is available to all Microsoft Dataverse clients.",
+                                "label": "Object",
+                                "options": [
+                                        "Virtual entity",
+                                        "Custom connector"
+                                ],
+                                "answer": "Virtual entity"
+                        }
+                ],
+                "explanation": "Use a custom connector for data sources that need non-GUID keys or read/write operations through an API. Use a virtual table when the data must appear as Dataverse data to Dataverse clients."
+        },
+        {
+                "id": 29,
+                "sourceLabel": "Added Question #16",
+                "type": "choice",
+                "text": "A Power Platform solution includes the following Web API call. You need to explain what this line of code is doing. What does the code do?",
+                "code": "GET http://contoso.crm.dynamics.com/api/data/v9.1/RelationshipDefinitions?$select=SchemaName",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Retrieve the list of relationships between tables."
+                        },
+                        {
+                                "key": "B",
+                                "text": "Retrieve a list of tables that are related to each other."
+                        },
+                        {
+                                "key": "C",
+                                "text": "Retrieve a list of one-to-many relationships with other tables."
+                        },
+                        {
+                                "key": "D",
+                                "text": "Retrieve a list of tables that have more than one relationship."
+                        },
+                        {
+                                "key": "E",
+                                "text": "Retrieve a list of many-to-many relationships with other tables."
+                        }
+                ],
+                "answers": [
+                        "A"
+                ],
+                "explanation": "RelationshipDefinitions is the entity set used to query relationship metadata, including SchemaName."
+        },
+        {
+                "id": 30,
+                "sourceLabel": "Added Question #17",
+                "type": "matrix",
+                "badge": "Hotspot",
+                "text": "You create a Power Automate flow that retrieves data from the Microsoft Dataverse Account table. The flow uses only a subset of Account table data. How should you configure the Dataverse List Rows action? Select the appropriate method for each data point.",
+                "rows": [
+                        {
+                                "id": "primaryContactName",
+                                "requirement": "Full name of the primary contact",
+                                "label": "Method",
+                                "options": [
+                                        "Expand Query = primarycontactid($select=fullname)",
+                                        "Select columns = fullname",
+                                        "Select columns = primarycontactid, fullname",
+                                        "Expand Query = /primarycontactid?$select=fullname"
+                                ],
+                                "answer": "Expand Query = primarycontactid($select=fullname)"
+                        },
+                        {
+                                "id": "highestCreditLimit",
+                                "requirement": "Account with the highest credit limit",
+                                "label": "Method",
+                                "options": [
+                                        "Row count = 1 and Sort By = creditlimit desc",
+                                        "Row count = 1 and Sort By = creditlimit asc",
+                                        "Expand Query = expand=account($top=1;$select=creditlimit)"
+                                ],
+                                "answer": "Row count = 1 and Sort By = creditlimit desc"
+                        }
+                ],
+                "explanation": "Use Expand Query to retrieve related primary contact data, and sort credit limit descending with a row count of 1 to return the highest value."
+        },
+        {
+                "id": 31,
+                "sourceLabel": "Added Question #18",
+                "type": "choice",
+                "text": "You are creating a canvas app to retrieve user sign-in information from Microsoft Entra ID when someone searches for information about an end user. You create an Azure Function to retrieve the required information by using JSON. You need to ensure that the application functions correctly. Which two actions should you perform? Each correct answer presents part of the solution. NOTE: Each correct selection is worth one point.",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Create a Power Automate flow to import data."
+                        },
+                        {
+                                "key": "B",
+                                "text": "Create a custom connector by using the Azure Function API."
+                        },
+                        {
+                                "key": "C",
+                                "text": "Use app designer in the Power Platform admin center."
+                        },
+                        {
+                                "key": "D",
+                                "text": "Use Azure Service Bus."
+                        },
+                        {
+                                "key": "E",
+                                "text": "Create an API definition for the Azure Function."
+                        }
+                ],
+                "answers": [
+                        "B",
+                        "E"
+                ]
+        },
+        {
+                "id": 32,
+                "sourceLabel": "Added Question #19",
+                "type": "matrix",
+                "badge": "Drag and drop",
+                "text": "A company is configuring Microsoft Power Virtual Agents and Power Automate flows that use model-driven apps. The company has a website that uses Power Pages. You create Power Virtual Agents bot topics. You must configure the website to use a bot, create Bot Framework skills, and create a support request from the bot without human interaction. Which application should you use for each requirement?",
+                "rows": [
+                        {
+                                "id": "botWebsite",
+                                "requirement": "Use a bot on the website.",
+                                "label": "Application",
+                                "options": [
+                                        "Power Virtual Agents",
+                                        "Power Automate",
+                                        "Power Pages",
+                                        "Power App"
+                                ],
+                                "answer": "Power Pages"
+                        },
+                        {
+                                "id": "botSkills",
+                                "requirement": "Create Bot Framework skills.",
+                                "label": "Application",
+                                "options": [
+                                        "Power Virtual Agents",
+                                        "Power Automate",
+                                        "Power Pages",
+                                        "Power App"
+                                ],
+                                "answer": "Power Virtual Agents"
+                        },
+                        {
+                                "id": "supportRequest",
+                                "requirement": "Create support request from the bot.",
+                                "label": "Application",
+                                "options": [
+                                        "Power Virtual Agents",
+                                        "Power Automate",
+                                        "Power Pages",
+                                        "Power App"
+                                ],
+                                "answer": "Power Automate"
+                        }
+                ]
+        },
+        {
+                "id": 33,
+                "sourceLabel": "Added Question #20",
+                "type": "choice",
+                "text": "You are configuring a custom connector for a web service. The web service is hosted in two different regions. The web service URL includes a common domain name and a unique sub-domain for each region. The custom connector must allow the region to be entered for additional regions when creating the connection. You need to create a policy template. Which template type should you use?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Set HTTP header"
+                        },
+                        {
+                                "key": "B",
+                                "text": "Route request"
+                        },
+                        {
+                                "key": "C",
+                                "text": "Set host URL"
+                        },
+                        {
+                                "key": "D",
+                                "text": "Set query string parameter"
+                        }
+                ],
+                "answers": [
+                        "C"
+                ]
+        },
+        {
+                "id": 34,
+                "sourceLabel": "Added Scenario Question #1",
+                "type": "choice",
+                "text": "You are designing a one-way integration from Dataverse to another system. You must use an Azure Function to update the other system. The integration must send only newly created records to the other system. The solution must support scenarios where a component of the integration is unavailable for more than a few seconds to avoid data loss. Solution: Register a webhook in Dataverse that connects to the Azure Function. Register a step on the webhook which runs synchronously on the record's Create message and in the post-operation stage. Does the solution meet the goal?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Yes"
+                        },
+                        {
+                                "key": "B",
+                                "text": "No"
+                        }
+                ],
+                "answers": [
+                        "B"
+                ],
+                "explanation": "Use an asynchronous pattern when temporary unavailability must not cause data loss."
+        },
+        {
+                "id": 35,
+                "sourceLabel": "Added Scenario Question #3",
+                "type": "choice",
+                "text": "A company implements Dynamics 365 Customer Service. The company deploys synchronous plug-ins for the PreOperation and PostOperation stages on create and for the PostOperation stage on update for processing different case types. Users experience errors when updating cases. Trace logs show that the PostOperation plug-in update of case times out after two minutes. Testing shows the plug-in is triggered on every case update and retrieves all columns for the updated case record. You need to reduce errors with the least amount of changes. Solution: In the Plug-in Registration Tool, update the plug-in step and increase the Execution Order. Does the solution meet the goal?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "No"
+                        },
+                        {
+                                "key": "B",
+                                "text": "Yes"
+                        }
+                ],
+                "answers": [
+                        "A"
+                ],
+                "explanation": "Changing execution order does not reduce unnecessary triggering or all-column retrieval. Filtering attributes and optimizing the retrieved columns would be more relevant."
+        },
+        {
+                "id": 36,
+                "sourceLabel": "Added Scenario Question #7",
+                "type": "choice",
+                "text": "A company develops a new custom connector for a Microsoft Entra ID-protected Azure Function that was created as a single-tenant app. The custom connector must be moved to a production environment. The connector must be visible and accessible only to users in the tenant. Solution: Add the custom connector to a managed solution, export the managed solution, and then import the managed solution into the production environment. Does the solution meet the goal?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "No"
+                        },
+                        {
+                                "key": "B",
+                                "text": "Yes"
+                        }
+                ],
+                "answers": [
+                        "A"
+                ]
+        },
+        {
+                "id": 37,
+                "sourceLabel": "Added Scenario Question #8",
+                "type": "choice",
+                "text": "You are troubleshooting a new canvas app. Users report that the app loads slowly. You use the Monitor tool to view various events being performed in the app. Events performed in the app do not have formula details. You need to enable formulas to be included with Monitor tool events. What should you do?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Add the Microsoft Azure Application Insights data source to the canvas app."
+                        },
+                        {
+                                "key": "B",
+                                "text": "Validate that the Application Insights instrumentation key has been populated in the app object's properties within the canvas app."
+                        },
+                        {
+                                "key": "C",
+                                "text": "After each event, implement the Trace function within the canvas app."
+                        },
+                        {
+                                "key": "D",
+                                "text": "Turn on the Debug published app setting in the canvas app."
+                        }
+                ],
+                "answers": [
+                        "D"
+                ]
+        },
+        {
+                "id": 38,
+                "sourceLabel": "Added Scenario Question #9",
+                "type": "matrix",
+                "badge": "Hotspot",
+                "text": "You are examining code written by another developer that is not functioning correctly. There are no other JavaScript or business rules in use on the form. This code is registered to the OnChange event of the telephone1 field on an account entity form. The primary contact field is a lookup. For each statement, select Yes if the statement is true. Otherwise, select No.",
+                "code": "01 function UpdatePrimaryContact(executionContext) {\n02   var formContext = executionContext.getFormContext();\n03   var formType = formContext.ui.getFormType();\n04   if (formType !== 2) {\n05     return;\n06   }\n07   var data =\n08   {\n09     \"telephone1\": formContext.getAttribute(\"telephone1\").getValue()\n10   }\n11   var primaryContact = formContext.getAttribute(\"primarycontactid\").getValue();\n12   Xrm.WebApi.updateRecord(\"contact\", primaryContact[0].id, data).then(\n13     function success() {\n14       ...\n15       Xrm.Navigation.openAlertDialog({ text: \"Updated\" });\n16     },\n17     function fail() {\n18       Xrm.Navigation.openErrorDialog({ message: \"Error\" });\n19     }\n20   );\n21   Xrm.Navigation.openAlertDialog({ text: \"Done\" });\n22 }",
+                "rows": [
+                        {
+                                "id": "updateMode",
+                                "requirement": "Updating the primary contact record will only happen when the form is in update mode.",
+                                "label": "Answer",
+                                "options": [
+                                        "Yes",
+                                        "No"
+                                ],
+                                "answer": "Yes"
+                        },
+                        {
+                                "id": "missingPrimaryContact",
+                                "requirement": "If the primary contact field on the account does not have a value, the error dialog on line 18 is displayed.",
+                                "label": "Answer",
+                                "options": [
+                                        "Yes",
+                                        "No"
+                                ],
+                                "answer": "Yes"
+                        },
+                        {
+                                "id": "doneAfterUpdated",
+                                "requirement": "The alert dialog on line 21 will always be shown after the update completes and the alert dialog on line 15 is shown.",
+                                "label": "Answer",
+                                "options": [
+                                        "Yes",
+                                        "No"
+                                ],
+                                "answer": "No"
+                        }
+                ],
+                "explanation": "The provided answer key for this item is Yes, Yes, No. Line 21 is outside the promise success callback, so it is not guaranteed to run after the update-complete alert."
+        },
+        {
+                "id": 39,
+                "sourceLabel": "Added Scenario Question #10",
+                "type": "choice",
+                "text": "A client requires that the system send an email from a button on their customer contact form. You need to call the action from JavaScript. Which two functions achieve this result? Each correct answer presents a complete solution. NOTE: Each correct selection is worth one point.",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Xrm.WebApi.online.createRecord()"
+                        },
+                        {
+                                "key": "B",
+                                "text": "Xrm.WebApi.online.updateRecord()"
+                        },
+                        {
+                                "key": "C",
+                                "text": "Xrm.WebApi.online.execute()"
+                        },
+                        {
+                                "key": "D",
+                                "text": "Xrm.WebApi.online.executeMultiple()"
+                        }
+                ],
+                "answers": [
+                        "C",
+                        "D"
+                ],
+                "explanation": "Use Xrm.WebApi.online.execute for a single action/function/CRUD operation, or executeMultiple for a collection. The uploaded source listed A,D, but its own explanation references execute and executeMultiple."
+        },
+        {
+                "id": 40,
+                "sourceLabel": "Added Scenario Question #11",
+                "type": "matrix",
+                "badge": "Drag and drop",
+                "text": "A company is creating a new system based on Microsoft Dataverse. You need to select the Dataverse features that meet the company's requirements. Which features should you select?",
+                "rows": [
+                        {
+                                "id": "deleteReferentialRecords",
+                                "requirement": "When a primary record is deleted, the associated referential records must also be deleted.",
+                                "label": "Feature",
+                                "options": [
+                                        "Cascade User Owned",
+                                        "Referential, Restrict Delete",
+                                        "Referential",
+                                        "Parental"
+                                ],
+                                "answer": "Referential"
+                        },
+                        {
+                                "id": "assignReferencingRecords",
+                                "requirement": "When a record is assigned to a user, all referencing records must also be assigned to that user.",
+                                "label": "Feature",
+                                "options": [
+                                        "Cascade User Owned",
+                                        "Referential, Restrict Delete",
+                                        "Referential",
+                                        "Parental"
+                                ],
+                                "answer": "Cascade User Owned"
+                        },
+                        {
+                                "id": "doNotDeleteAssociated",
+                                "requirement": "When a primary record is deleted, the associated record must not be deleted.",
+                                "label": "Feature",
+                                "options": [
+                                        "Cascade User Owned",
+                                        "Referential, Restrict Delete",
+                                        "Referential",
+                                        "Parental"
+                                ],
+                                "answer": "Referential, Restrict Delete"
+                        }
+                ]
+        },
+        {
+                "id": 41,
+                "sourceLabel": "Added Scenario Question #12",
+                "type": "matrix",
+                "badge": "Hotspot",
+                "text": "You are designing an integration between Dataverse and an external application. The external application processes thousands of records per day. Processing volumes vary throughout the day and may exceed Dataverse service protection API limits. You need to implement each service protection limit that is enforced. Which implementation should you use for each limit?",
+                "rows": [
+                        {
+                                "id": "numberOfRequests",
+                                "requirement": "Number of requests",
+                                "label": "Implementation",
+                                "options": [
+                                        "Number per user over a sliding window of time",
+                                        "Number per environment over a sliding window of time",
+                                        "Number per user per 24-hour period",
+                                        "Number per environment per 24-hour period"
+                                ],
+                                "answer": "Number per user over a sliding window of time"
+                        },
+                        {
+                                "id": "combinedExecution",
+                                "requirement": "Combined execution time",
+                                "label": "Implementation",
+                                "options": [
+                                        "Combined time per user over a sliding window of time",
+                                        "Combined time per user over a fixed window of time",
+                                        "Combined time per environment over a sliding window of time",
+                                        "Combined time per environment over a fixed window of time"
+                                ],
+                                "answer": "Combined time per user over a sliding window of time"
+                        },
+                        {
+                                "id": "concurrentRequests",
+                                "requirement": "Concurrent requests",
+                                "label": "Implementation",
+                                "options": [
+                                        "Fixed number per user",
+                                        "Fixed number per tenant",
+                                        "Fixed number per application",
+                                        "Fixed number per environment"
+                                ],
+                                "answer": "Fixed number per user"
+                        }
+                ],
+                "explanation": "Dataverse service protection API limits are based on user request count, combined execution time, and concurrent requests."
+        },
+        {
+                "id": 42,
+                "sourceLabel": "Added Scenario Question #13",
+                "type": "choice",
+                "text": "Customers report that the response time from the information email listed on the Adventure Works Cycles website is greater than five days. Microsoft Teams is used for all collaboration. You need to reduce response time for the information email on the website. What should you create?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "A flow that creates a notification in Microsoft Teams"
+                        },
+                        {
+                                "key": "B",
+                                "text": "A Power Apps app that displays the number of emails received in a dashboard"
+                        },
+                        {
+                                "key": "C",
+                                "text": "A flow that creates a SharePoint item for each email response"
+                        },
+                        {
+                                "key": "D",
+                                "text": "A Logic App that moves all emails received to Azure Blob storage"
+                        }
+                ],
+                "answers": [
+                        "A"
+                ]
+        },
+        {
+                "id": 43,
+                "sourceLabel": "Added Scenario Question #14",
+                "type": "matrix",
+                "badge": "Hotspot",
+                "text": "You need to correct the JavaScript code that communicates with the address verification API. For each statement, select Yes if the statement is true. Otherwise, select No.",
+                "rows": [
+                        {
+                                "id": "actionName",
+                                "requirement": "You must replace ACTIONNAME in line AV22 with northwind_ValidateAddress.",
+                                "label": "Answer",
+                                "options": [
+                                        "Yes",
+                                        "No"
+                                ],
+                                "answer": "Yes"
+                        },
+                        {
+                                "id": "lineAv28",
+                                "requirement": "You can add code at line AV28 to display an error message returned by the address validation API.",
+                                "label": "Answer",
+                                "options": [
+                                        "Yes",
+                                        "No"
+                                ],
+                                "answer": "Yes"
+                        },
+                        {
+                                "id": "eliminatesError",
+                                "requirement": "Calling the address validation API from the custom action eliminates the error reported by users.",
+                                "label": "Answer",
+                                "options": [
+                                        "Yes",
+                                        "No"
+                                ],
+                                "answer": "No"
+                        }
+                ],
+                "explanation": "The provided answer key for this item is Yes, Yes, No."
+        },
+        {
+                "id": 44,
+                "sourceLabel": "Added Scenario Question #15",
+                "type": "choice",
+                "text": "A bank uses a Dataverse solution to manage clients. Bank representatives perform client credit checks while the client is present. Credit checks may take up to five minutes to complete. Bank policy dictates that the bank representative's app must stay blocked until credit checks are complete. You need to display a message in a model-driven app while credit checks run to ask the bank representative and client to wait for the credit check to complete. Which function should you use?",
+                "options": [
+                        {
+                                "key": "A",
+                                "text": "Xrm.Navigation.openWebResource(\"prefix.myPoliteMessage.html\")"
+                        },
+                        {
+                                "key": "B",
+                                "text": "Xrm.Navigation.openAlertDialog(myPoliteMessage)"
+                        },
+                        {
+                                "key": "C",
+                                "text": "Xrm.Utility.openWebResource(\"prefix_myPoliteMessage.html\")"
+                        },
+                        {
+                                "key": "D",
+                                "text": "Xrm.Utility.showProgressIndicator(myPoliteMessage)"
+                        }
+                ],
+                "answers": [
+                        "D"
+                ],
+                "explanation": "showProgressIndicator displays a blocking progress dialog until it is closed with closeProgressIndicator."
+        }
+];
+
+      let activeQuestions = [];
+      const state = new Map();
+
+      const quizContainer = document.getElementById("quizContainer");
+      const progressText = document.getElementById("progressText");
+      const progressBar = document.getElementById("progressBar");
+      const answeredCount = document.getElementById("answeredCount");
+      const questionCount = document.getElementById("questionCount");
+      const scorePreview = document.getElementById("scorePreview");
+      const finalResult = document.getElementById("finalResult");
+      const finalButton = document.getElementById("showFinalResult");
+
+      function shuffleArray(items) {
+        const copy = [...items];
+        for (let i = copy.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy;
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      function getQuestion(id) {
+        return activeQuestions.find((question) => question.id === Number(id));
+      }
+
+      function getOptionText(question, key) {
+        const option = question.options.find((item) => item.key === key);
+        return option ? `${option.key}. ${option.text}` : key;
+      }
+
+      function formatChoiceAnswers(question, answers) {
+        if (!answers || answers.length === 0) {
+          return "No answer selected";
+        }
+        return answers.map((key) => escapeHtml(getOptionText(question, key))).join("<br>");
+      }
+
+      function formatMatrixAnswers(question, selectedMap) {
+        const selected = selectedMap || {};
+        return `
+          <div class="pl400-matrix-review-table">
+            ${question.rows.map((row) => `
+              <div class="pl400-matrix-review-line">
+                <span>${escapeHtml(row.requirement)}</span>
+                <strong>${selected[row.id] ? escapeHtml(selected[row.id]) : "No answer selected"}</strong>
+              </div>
+            `).join("")}
+          </div>
+        `;
+      }
+
+      function formatMatrixAnswerKey(question) {
+        const answers = {};
+        question.rows.forEach((row) => {
+          answers[row.id] = row.answer;
+        });
+        return formatMatrixAnswers(question, answers);
+      }
+
+      function sameAnswerSet(a, b) {
+        if (a.length !== b.length) return false;
+        const left = [...a].sort();
+        const right = [...b].sort();
+        return left.every((value, index) => value === right[index]);
+      }
+
+      function getChoiceSelection(questionId) {
+        return Array.from(document.querySelectorAll(`input[name="q-${questionId}"]:checked`)).map((item) => item.value);
+      }
+
+      function getMatrixSelection(question) {
+        const selected = {};
+        question.rows.forEach((row) => {
+          const input = document.querySelector(`select[name="q-${question.id}-${row.id}"]`);
+          selected[row.id] = input ? input.value : "";
+        });
+        return selected;
+      }
+
+      function countMatrixSelections(selected) {
+        return Object.values(selected || {}).filter(Boolean).length;
+      }
+
+      function isMatrixComplete(question, selected) {
+        return question.rows.every((row) => Boolean(selected[row.id]));
+      }
+
+      function isMatrixCorrect(question, selected) {
+        return question.rows.every((row) => selected[row.id] === row.answer);
+      }
+
+      function getQuestionSelection(question) {
+        if (question.type === "matrix") {
+          return getMatrixSelection(question);
+        }
+        return getChoiceSelection(question.id);
+      }
+
+      function isQuestionAnswered(question, selected) {
+        if (question.type === "matrix") {
+          return isMatrixComplete(question, selected);
+        }
+        return Array.isArray(selected) && selected.length === getRequiredCount(question);
+      }
+
+      function isQuestionCorrect(question, selected) {
+        if (question.type === "matrix") {
+          return isMatrixComplete(question, selected) && isMatrixCorrect(question, selected);
+        }
+        return sameAnswerSet(selected, question.answers);
+      }
+
+      function formatSelectedAnswers(question, selected) {
+        if (question.type === "matrix") {
+          return formatMatrixAnswers(question, selected);
+        }
+        return formatChoiceAnswers(question, selected);
+      }
+
+      function formatCorrectAnswers(question) {
+        if (question.type === "matrix") {
+          return formatMatrixAnswerKey(question);
+        }
+        return formatChoiceAnswers(question, question.answers);
+      }
+
+      function getQuestionBadge(question) {
+        if (question.badge) return question.badge;
+        if (question.type === "matrix") return "Answer area";
+        return question.answers.length > 1 ? "Multiple answers" : "Single answer";
+      }
+
+      function getQuestionNote(question) {
+        const requiredCount = getRequiredCount(question);
+
+        if (question.type === "matrix") {
+          return `This question requires all ${requiredCount} rows before it counts as answered.`;
+        }
+
+        if (question.answers.length > 1) {
+          return `Multiple-answer question: select ${requiredCount} options.`;
+        }
+
+        return "Optional: use Show answer when you are ready to compare.";
+      }
+
+      function renderImageMarkup(question, mode) {
+        return "";
+      }
+
+      function renderExplanationImage(question) {
+        if (!question.explanationImage) return "";
+        return `
+          <figure class="pl400-question-media pl400-explanation-media">
+            <img src="${escapeHtml(question.explanationImage)}" alt="Explanation image for ${escapeHtml(question.sourceLabel || `Question #${question.id}`)}" loading="lazy" />
+          </figure>
+        `;
+      }
+
+      function renderQuestionExtras(question) {
+        if (!question.code) return "";
+        return `
+          <pre class="pl400-code-block"><code>${escapeHtml(question.code)}</code></pre>
+        `;
+      }
+
+      function renderChoiceQuestion(question) {
+        const isMultiple = question.answers.length > 1;
+        const inputType = isMultiple ? "checkbox" : "radio";
+        return `
+          <div class="pl400-options">
+            ${question.options.map((option) => `
+              <label class="pl400-option">
+                <input class="pl400-option-input" type="${inputType}" name="q-${question.id}" value="${escapeHtml(option.key)}" data-question-id="${question.id}" />
+                <span class="pl400-option-key">${escapeHtml(option.key)}</span>
+                <span class="pl400-option-text">${escapeHtml(option.text)}</span>
+              </label>
+            `).join("")}
+          </div>
+        `;
+      }
+
+      function renderMatrixQuestion(question) {
+        return `
+          <div class="pl400-answer-area" role="group" aria-label="Answer area for ${escapeHtml(question.sourceLabel || `Question #${question.id}`)}">
+            <div class="pl400-answer-area-head">
+              <strong>Answer area</strong>
+              <span>Select one option for each row.</span>
+            </div>
+            <div class="pl400-matrix-card">
+              ${question.rows.map((row, index) => `
+                <div class="pl400-matrix-row">
+                  <div class="pl400-matrix-requirement">
+                    <span>Requirement ${index + 1}</span>
+                    <strong>${escapeHtml(row.requirement)}</strong>
+                  </div>
+                  <label class="pl400-matrix-control">
+                    <span>${escapeHtml(row.label || "Answer")}</span>
+                    <select class="pl400-matrix-select" name="q-${question.id}-${row.id}" data-question-id="${question.id}">
+                      <option value="">Select an option</option>
+                      ${row.options.map((option) => `<option value="${escapeHtml(option)}">${escapeHtml(option)}</option>`).join("")}
+                    </select>
+                  </label>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        `;
+      }
+
+      function renderQuestionBody(question) {
+        if (question.type === "matrix") {
+          return renderMatrixQuestion(question);
+        }
+        return renderChoiceQuestion(question);
+      }
+
+      function renderQuiz() {
+        state.clear();
+        clearFinalResult();
+
+        activeQuestions = shuffleArray(questions).slice(0, Math.min(MAX_QUESTIONS, questions.length));
+        if (questionCount) questionCount.textContent = activeQuestions.length;
+
+        quizContainer.innerHTML = activeQuestions.map((question, index) => `
+          <article class="pl400-question-card" id="card-${question.id}">
+            <div class="pl400-question-head">
+              <div>
+                <div class="pl400-question-kicker">Question ${index + 1} of ${activeQuestions.length} · ${escapeHtml(question.sourceLabel || `Original #${question.id}`)}</div>
+                <p class="pl400-question-text">${escapeHtml(question.text)}</p>
+                ${renderQuestionExtras(question)}
+              </div>
+              <span class="pl400-question-badge">${escapeHtml(getQuestionBadge(question))}</span>
+            </div>
+
+            ${renderQuestionBody(question)}
+
+            <div class="pl400-question-actions">
+              <button class="secondary-button pl400-action-button pl400-check-answer pl400-show-answer" type="button" data-question-id="${question.id}" aria-expanded="false">
+                Show answer
+              </button>
+              <span>${escapeHtml(getQuestionNote(question))}</span>
+            </div>
+
+            <div class="pl400-result-box hidden" id="result-${question.id}"></div>
+          </article>
+        `).join("");
+
+        updateProgress();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function updateProgress() {
+        let answered = 0;
+        let correct = 0;
+
+        activeQuestions.forEach((question) => {
+          const item = state.get(question.id);
+          if (item && item.answered) {
+            answered += 1;
+            if (item.correct) correct += 1;
+          }
+        });
+
+        const total = activeQuestions.length;
+        const percentageAnswered = total ? Math.round((answered / total) * 100) : 0;
+        const partialScore = answered ? Math.round((correct / answered) * 100) : 0;
+
+        progressText.textContent = `${answered} of ${total} answered`;
+        progressBar.style.width = `${percentageAnswered}%`;
+        if (answeredCount) answeredCount.textContent = answered;
+        if (scorePreview) scorePreview.textContent = `${partialScore}%`;
+      }
+
+      function setFinalButtonVisible(isVisible) {
+        if (!finalButton) return;
+        finalButton.hidden = !isVisible;
+      }
+
+      function clearFinalResult() {
+        finalResult.classList.add("hidden");
+        finalResult.innerHTML = "";
+        setFinalButtonVisible(true);
+      }
+
+      function setAnswerButtonState(questionId, revealed) {
+        const button = document.querySelector(`.pl400-show-answer[data-question-id="${questionId}"]`);
+        if (!button) return;
+        button.textContent = revealed ? "Hide answer" : "Show answer";
+        button.setAttribute("aria-expanded", revealed ? "true" : "false");
+      }
+
+      function hideQuestionFeedback(questionId) {
+        const feedback = document.getElementById(`result-${questionId}`);
+        feedback.className = "pl400-result-box hidden";
+        feedback.innerHTML = "";
+      }
+
+      function getSelectedCount(question, selected) {
+        if (question.type === "matrix") return countMatrixSelections(selected);
+        return selected.length;
+      }
+
+      function getRequiredCount(question) {
+        if (question.type === "matrix") return question.rows.length;
+        return question.answers.length > 1 ? question.answers.length : 1;
+      }
+
+      function isSelectionComplete(question, selected) {
+        if (question.type === "matrix") {
+          return isMatrixComplete(question, selected);
+        }
+        return getSelectedCount(question, selected) === getRequiredCount(question);
+      }
+
+      function renderQuestionResult(question, selected, correct, heading = null) {
+        return `
+          <strong>${heading || (correct ? "Correct." : "Incorrect.")}</strong>
+          <div class="pl400-answer-comparison">
+            <div><b>Your answer:</b><br>${formatSelectedAnswers(question, selected)}</div>
+            <div><b>Answer key:</b><br>${formatCorrectAnswers(question)}</div>
+          </div>
+          ${question.explanation ? `<div><b>Explanation:</b> ${escapeHtml(question.explanation)}</div>` : ""}
+          ${renderExplanationImage(question)}
+        `;
+      }
+
+      function showIncompleteSelectionWarning(question, selected, selectedCount, requiredCount, shouldReveal = false) {
+        const feedback = document.getElementById(`result-${question.id}`);
+        const title = question.type === "matrix" ? "Answer area incomplete." : "Multiple-answer question.";
+        const message = question.type === "matrix"
+          ? `Complete all ${requiredCount} rows before this question is counted.`
+          : selectedCount > requiredCount
+            ? `This question requires exactly ${requiredCount} options. Adjust your selection before this question is counted.`
+            : `Select ${requiredCount} options before this question is counted.`;
+
+        feedback.className = "pl400-result-box warning";
+        feedback.innerHTML = `
+          <strong>${title}</strong>
+          <div>You selected ${selectedCount} of ${requiredCount} required items. ${message}</div>
+          ${shouldReveal ? renderQuestionResult(question, selected, false, "Answer key.") : ""}
+        `;
+      }
+
+      function updateQuestionState(questionId, shouldReveal = null) {
+        const question = getQuestion(questionId);
+        if (!question) return;
+
+        const selected = getQuestionSelection(question);
+        const selectedCount = getSelectedCount(question, selected);
+        const requiredCount = getRequiredCount(question);
+        const previous = state.get(question.id);
+        const revealAnswer = shouldReveal === null || typeof shouldReveal === "undefined"
+          ? Boolean(previous && previous.revealed)
+          : Boolean(shouldReveal);
+
+        setAnswerButtonState(question.id, revealAnswer);
+        clearFinalResult();
+
+        if (!selectedCount) {
+          if (!revealAnswer) {
+            state.delete(question.id);
+            hideQuestionFeedback(question.id);
+            updateProgress();
+            return;
+          }
+
+          state.set(question.id, {
+            selected,
+            answered: false,
+            correct: false,
+            revealed: true
+          });
+
+          const feedback = document.getElementById(`result-${question.id}`);
+          feedback.className = "pl400-result-box warning";
+          feedback.innerHTML = `
+            <strong>No answer selected.</strong>
+            <div>This question will not count as answered until you select the required item${requiredCount > 1 ? "s" : ""}.</div>
+            ${renderQuestionResult(question, selected, false, "Answer key.")}
+          `;
+          updateProgress();
+          return;
+        }
+
+        if (!isSelectionComplete(question, selected)) {
+          state.set(question.id, {
+            selected,
+            answered: false,
+            correct: false,
+            revealed: revealAnswer
+          });
+          showIncompleteSelectionWarning(question, selected, selectedCount, requiredCount, revealAnswer);
+          updateProgress();
+          return;
+        }
+
+        const correct = isQuestionCorrect(question, selected);
+        state.set(question.id, {
+          selected,
+          answered: true,
+          correct,
+          revealed: revealAnswer
+        });
+
+        if (revealAnswer) {
+          const feedback = document.getElementById(`result-${question.id}`);
+          feedback.className = `pl400-result-box ${correct ? "correct" : "wrong"}`;
+          feedback.innerHTML = renderQuestionResult(question, selected, correct);
+        } else {
+          hideQuestionFeedback(question.id);
+        }
+
+        updateProgress();
+      }
+
+      function getDiagnosis(score, correct, wrong, notAnswered, total) {
+        const unansweredText = notAnswered > 0
+          ? ` You also left ${notAnswered} question${notAnswered === 1 ? "" : "s"} unanswered, so start there before interpreting the score.`
+          : "";
+
+        if (score >= PASSING_SCORE) {
+          return {
+            status: "good",
+            title: `You reached the ${PASSING_SCORE}% passing score for this practice set.`,
+            text: `This is a positive signal, but it should not be treated as a guarantee for the official exam. Review the questions you missed, confirm the related concepts, and use this result to decide what still needs practice.${unansweredText}`
+          };
+        }
+
+        if (score >= 60) {
+          return {
+            status: "near",
+            title: `You are close to the ${PASSING_SCORE}% passing score.`,
+            text: `Focus on the questions marked incorrect and look for patterns: plug-ins, Dataverse, custom connectors, portals, integrations, or model-driven app behavior. A short targeted review can make the next attempt much more useful.${unansweredText}`
+          };
+        }
+
+        if (score >= 40) {
+          return {
+            status: "review",
+            title: `You are below the ${PASSING_SCORE}% passing score.`,
+            text: `Use this attempt as a map of weak areas rather than as a pass/fail judgment. Revisit the core PL-400 topics, then retake the practice set with the questions shuffled.${unansweredText}`
+          };
+        }
+
+        return {
+          status: "foundation",
+          title: "Reinforce the foundations before using exam-style questions as a benchmark.",
+          text: `This score suggests that the fundamentals need more attention. Start with Dataverse, app types, Power Automate, plug-ins, connectors, portals, security, and integration patterns, then come back to these questions to measure improvement.${unansweredText}`
+        };
+      }
+
+      function buildFinalResult() {
+        let correct = 0;
+        let wrong = 0;
+        let notAnswered = 0;
+
+        const rows = activeQuestions.map((question, index) => {
+          const selected = getQuestionSelection(question);
+          const isAnswered = isQuestionAnswered(question, selected);
+          const isCorrect = isAnswered && isQuestionCorrect(question, selected);
+
+          if (!isAnswered) notAnswered += 1;
+          else if (isCorrect) correct += 1;
+          else wrong += 1;
+
+          const previous = state.get(question.id);
+          state.set(question.id, {
+            selected,
+            answered: isAnswered,
+            correct: isCorrect,
+            revealed: Boolean(previous && previous.revealed)
+          });
+
+          const statusText = !isAnswered ? "Not answered" : isCorrect ? "Correct" : "Incorrect";
+          const statusClass = !isAnswered ? "not-answered" : isCorrect ? "correct" : "wrong";
+
+          return `
+            <div class="pl400-review-row ${statusClass}">
+              <div class="pl400-review-title">
+                <span>Question ${index + 1} · ${escapeHtml(question.sourceLabel || `Original #${question.id}`)}</span>
+                <span>${statusText}</span>
+              </div>
+              <p><b>Your answer:</b><br>${formatSelectedAnswers(question, selected)}</p>
+              <p><b>Answer key:</b><br>${formatCorrectAnswers(question)}</p>
+              ${question.explanation ? `<p><b>Explanation:</b> ${escapeHtml(question.explanation)}</p>` : ""}
+              ${renderExplanationImage(question)}
+            </div>
+          `;
+        }).join("");
+
+        const total = activeQuestions.length;
+        const score = total ? Math.round((correct / total) * 100) : 0;
+
+        const diagnosis = getDiagnosis(score, correct, wrong, notAnswered, total);
+
+        finalResult.classList.remove("hidden");
+        setFinalButtonVisible(false);
+        finalResult.innerHTML = `
+          <div class="pl400-final-grid">
+            <div class="pl400-final-item"><strong>${score}%</strong><span>Final score</span></div>
+            <div class="pl400-final-item"><strong>${PASSING_SCORE}%</strong><span>Passing score</span></div>
+            <div class="pl400-final-item"><strong>${correct}</strong><span>Correct</span></div>
+            <div class="pl400-final-item"><strong>${wrong}</strong><span>Incorrect</span></div>
+            <div class="pl400-final-item"><strong>${notAnswered}</strong><span>Not answered</span></div>
+          </div>
+
+          <div class="pl400-review-list">${rows}</div>
+
+          <div class="pl400-diagnosis ${diagnosis.status}">
+            <span>Diagnosis</span>
+            <h3>${escapeHtml(diagnosis.title)}</h3>
+            <p>${escapeHtml(diagnosis.text)}</p>
+            <p class="pl400-diagnosis-note">
+              This practice set is a learning checkpoint, not a reliable predictor of whether you would pass the official exam. Use the result to understand which areas need more attention before you continue your preparation.
+            </p>
+          </div>
+        `;
+
+        updateProgress();
+        finalResult.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      quizContainer.addEventListener("change", (event) => {
+        if (!event.target.classList.contains("pl400-option-input") && !event.target.classList.contains("pl400-matrix-select")) return;
+
+        const questionId = Number(event.target.dataset.questionId);
+        updateQuestionState(questionId);
+      });
+
+      quizContainer.addEventListener("click", (event) => {
+        const button = event.target.closest(".pl400-show-answer");
+        if (!button) return;
+
+        const questionId = Number(button.dataset.questionId);
+        const current = state.get(questionId);
+        const nextRevealState = !(current && current.revealed);
+        updateQuestionState(questionId, nextRevealState);
+      });
+
+      finalButton.addEventListener("click", buildFinalResult);
+      document.getElementById("shuffleAgain").addEventListener("click", renderQuiz);
+
+      renderQuiz();
+    </script>
+  </body>
+</html>
