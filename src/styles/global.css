@@ -2116,7 +2116,23 @@ h3 {
     padding: 10px 16px 10px 10px;
   }
 }
+/* Favicon brand mark for the site header */
+.brand-mark-icon,
+.brand-mark-logo {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  padding: 8px;
+  background: #ffffff;
+  color: var(--navy);
+}
 
+.brand-mark-icon img,
+.brand-mark-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 /* PL-400 mock test page */
 
 .pl400-page {
@@ -3124,7 +3140,6 @@ h3 {
   }
 }
 
-
 /* PL-400 practice page refinements */
 .brand-mark-logo {
   overflow: hidden;
@@ -3158,4 +3173,208 @@ h3 {
 
 .pl400-code-block code {
   font: inherit;
+}
+
+/* PL-400 matrix answer-area hardening
+   Keeps the current matrix markup styled even if an older global.css still has
+   the previous .pl400-matrix / .pl400-answer-select selectors. */
+.pl400-page .pl400-answer-area {
+  display: grid;
+  row-gap: 16px;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.pl400-page .pl400-matrix-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 14px;
+  gap: 14px;
+}
+
+.pl400-page .pl400-matrix-row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(280px, 1.05fr);
+  column-gap: 14px;
+  row-gap: 12px;
+  gap: 14px;
+  align-items: stretch;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.04);
+}
+
+.pl400-page .pl400-matrix-requirement,
+.pl400-page .pl400-matrix-control {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  min-width: 0;
+}
+
+.pl400-page .pl400-matrix-requirement span,
+.pl400-page .pl400-matrix-control span {
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pl400-page .pl400-matrix-requirement strong {
+  color: var(--navy-soft);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.pl400-page .pl400-matrix-select {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  padding: 10px 14px;
+  background: #f8fafc;
+  color: var(--navy);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+  cursor: pointer;
+  box-shadow: none;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+
+.pl400-page .pl400-matrix-select:hover {
+  border-color: rgba(15, 98, 254, 0.4);
+  background: #ffffff;
+}
+
+.pl400-page .pl400-matrix-select:focus {
+  outline: none;
+  border-color: rgba(15, 98, 254, 0.55);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(15, 98, 254, 0.12);
+}
+
+.brand-mark-icon,
+.brand-mark-logo {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  padding: 8px;
+  background: #ffffff;
+  color: var(--navy);
+}
+
+.brand-mark-icon img,
+.brand-mark-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 840px) {
+  .pl400-page .pl400-matrix-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .pl400-page .pl400-matrix-card {
+    row-gap: 12px;
+    gap: 12px;
+  }
+
+  .pl400-page .pl400-matrix-row {
+    border-radius: 16px;
+    padding: 14px;
+  }
+
+  .pl400-page .pl400-matrix-select {
+    min-height: 50px;
+    font-size: 14px;
+  }
+}
+
+/* PL-400 official resources card */
+.pl400-official-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  margin: 24px 0 34px;
+  border: 1px solid var(--border);
+  border-radius: 26px;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(15, 98, 254, 0.12), transparent 260px),
+    #ffffff;
+  box-shadow: var(--shadow-soft);
+}
+
+.pl400-official-card span {
+  display: inline-flex;
+  margin-bottom: 8px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pl400-official-card strong {
+  display: block;
+  color: var(--navy);
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.035em;
+}
+
+.pl400-official-card p {
+  max-width: 760px;
+  margin: 10px 0 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.pl400-official-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+@media (max-width: 840px) {
+  .pl400-official-card {
+    grid-template-columns: 1fr;
+  }
+
+  .pl400-official-actions {
+    justify-content: flex-start;
+  }
+}
+
+/* PL-400 official assessment link */
+.pl400-page .pl400-official-reference {
+  max-width: 760px;
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.pl400-page .pl400-official-reference a {
+  color: var(--blue);
+  font-weight: 850;
+  border-bottom: 1px solid rgba(15, 98, 254, 0.28);
+}
+
+.pl400-page .pl400-official-reference a:hover {
+  border-bottom-color: currentColor;
 }
