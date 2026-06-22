@@ -387,7 +387,7 @@ h1 {
   position: relative;
   z-index: 1;
   max-width: 520px;
-  margin: 24px 0 0;
+  margin: 22px 0 0;
   color: var(--muted);
   font-size: 16px;
   line-height: 1.7;
@@ -2633,7 +2633,6 @@ h3 {
   }
 }
 
-
 /* PL-400 structured answer-area questions */
 
 .pl400-answer-area {
@@ -2778,7 +2777,7 @@ h3 {
 
 .pl400-question-media {
   overflow: hidden;
-  margin: 24px 0 0;
+  margin: 22px 0 0;
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 12px;
@@ -2960,7 +2959,7 @@ h3 {
 /* PL-400 page header and optional answer reveal tweaks */
 .pl400-page-header {
   max-width: 820px;
-  margin: 0 0 24px;
+  margin: 22px 0 0;
 }
 
 .pl400-page-header h1 {
@@ -3125,7 +3124,6 @@ h3 {
     padding: 20px;
   }
 }
-
 
 /* PL-400 final-result layout refinements */
 .pl400-show-answer[aria-expanded="true"] {
@@ -3302,79 +3300,317 @@ h3 {
   }
 }
 
-/* PL-400 official resources card */
-.pl400-official-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 24px;
-  align-items: center;
-  margin: 24px 0 34px;
-  border: 1px solid var(--border);
-  border-radius: 26px;
-  padding: 24px;
-  background:
-    radial-gradient(circle at top right, rgba(15, 98, 254, 0.12), transparent 260px),
-    #ffffff;
-  box-shadow: var(--shadow-soft);
+
+/* PL-400 v16 official study guide reference */
+.pl400-page .pl400-study-guide-reference {
+  margin-top: 12px !important;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  color: var(--muted) !important;
+  font-size: 15px !important;
+  font-weight: 650;
+  line-height: 1.65 !important;
 }
 
-.pl400-official-card span {
-  display: inline-flex;
-  margin-bottom: 8px;
+.pl400-page .pl400-study-guide-reference a {
   color: var(--blue);
-  font-size: 12px;
+  font-weight: 900;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.pl400-page .pl400-study-guide-reference a:hover {
+  color: var(--blue-dark);
+}
+
+
+/* PL-400 v17 topic badges, inline study-guide text, and topic diagnosis chart */
+.pl400-page .pl400-study-guide-inline {
+  max-width: 840px;
+  margin: 14px 0 10px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.pl400-page .pl400-study-guide-inline a,
+.pl400-page .pl400-study-guide-reference a {
+  color: var(--blue);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.pl400-page .pl400-study-guide-inline a:hover,
+.pl400-page .pl400-study-guide-reference a:hover {
+  color: var(--blue-dark);
+}
+
+.pl400-page .pl400-question-kicker {
+  color: var(--blue);
   font-weight: 950;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.pl400-official-card strong {
-  display: block;
-  color: var(--navy);
-  font-size: 22px;
+.pl400-page .pl400-question-badge,
+.pl400-page .pl400-topic-badge {
+  max-width: 300px;
+  justify-content: center;
+  white-space: normal;
+  text-align: center;
   line-height: 1.25;
-  letter-spacing: -0.035em;
 }
 
-.pl400-official-card p {
-  max-width: 760px;
-  margin: 10px 0 0;
-  color: var(--muted);
-  line-height: 1.65;
+.pl400-page .pl400-topic-performance {
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+  padding-top: 22px;
 }
 
-.pl400-official-actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 10px;
+.pl400-page .pl400-topic-performance-head h4 {
+  margin: 0 0 6px;
+  color: var(--navy);
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
 }
 
-@media (max-width: 840px) {
-  .pl400-official-card {
-    grid-template-columns: 1fr;
-  }
-
-  .pl400-official-actions {
-    justify-content: flex-start;
-  }
-}
-
-/* PL-400 official assessment link */
-.pl400-page .pl400-official-reference {
-  max-width: 760px;
-  margin: 10px 0 0;
+.pl400-page .pl400-topic-performance-head p {
+  margin: 0;
   color: var(--muted);
   font-size: 14px;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
-.pl400-page .pl400-official-reference a {
-  color: var(--blue);
+.pl400-page .pl400-topic-chart {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 16px;
+  align-items: end;
+  margin-top: 18px;
+}
+
+.pl400-page .pl400-topic-chart-item {
+  display: grid;
+  justify-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.pl400-page .pl400-topic-bar {
+  display: flex;
+  flex-direction: column-reverse;
+  overflow: hidden;
+  width: min(54px, 100%);
+  height: 180px;
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  background: #f1f5f9;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.72);
+}
+
+.pl400-page .pl400-topic-segment {
+  display: block;
+  width: 100%;
+  min-height: 0;
+}
+
+.pl400-page .pl400-topic-segment.correct,
+.pl400-page .pl400-topic-legend i.correct {
+  background: #16a34a;
+}
+
+.pl400-page .pl400-topic-segment.wrong,
+.pl400-page .pl400-topic-legend i.wrong {
+  background: #dc2626;
+}
+
+.pl400-page .pl400-topic-segment.not-answered,
+.pl400-page .pl400-topic-legend i.not-answered {
+  background: #cbd5e1;
+}
+
+.pl400-page .pl400-topic-chart-item strong {
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 950;
+  text-align: center;
+}
+
+.pl400-page .pl400-topic-chart-item > span {
+  color: var(--text);
+  font-size: 13px;
   font-weight: 850;
-  border-bottom: 1px solid rgba(15, 98, 254, 0.28);
+  text-align: center;
 }
 
-.pl400-page .pl400-official-reference a:hover {
-  border-bottom-color: currentColor;
+.pl400-page .pl400-topic-chart-item small {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.pl400-page .pl400-topic-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.pl400-page .pl400-topic-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.pl400-page .pl400-topic-legend i {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+}
+
+.pl400-page .pl400-topic-focus {
+  margin-top: 14px !important;
+  color: var(--navy-soft) !important;
+  font-size: 14px !important;
+  font-weight: 750;
+  line-height: 1.6 !important;
+}
+
+@media (max-width: 900px) {
+  .pl400-page .pl400-topic-chart {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .pl400-page .pl400-question-badge,
+  .pl400-page .pl400-topic-badge {
+    max-width: 100%;
+    justify-self: start;
+    text-align: left;
+  }
+
+  .pl400-page .pl400-topic-chart {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pl400-page .pl400-topic-bar {
+    height: 150px;
+  }
+}
+
+/* PL-400 v22 topic badge tooltip */
+.pl400-page .pl400-question-badge.pl400-topic-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: max-content;
+  border: 1px solid rgba(15, 98, 254, 0.22);
+  border-radius: 999px;
+  padding: 8px 13px;
+  background:
+    radial-gradient(circle at top left, rgba(15, 98, 254, 0.16), transparent 80%),
+    var(--blue-soft);
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 950;
+  line-height: 1;
+  white-space: nowrap;
+  text-align: center;
+  cursor: help;
+  outline: none;
+  overflow: visible;
+}
+
+.pl400-page .pl400-question-badge.pl400-topic-badge::after {
+  content: attr(data-topic-title);
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+  z-index: 40;
+  width: max-content;
+  max-width: min(300px, calc(100vw - 40px));
+  border: 1px solid rgba(15, 98, 254, 0.18);
+  border-radius: 16px;
+  padding: 10px 12px;
+  background:
+    radial-gradient(circle at top left, rgba(15, 98, 254, 0.18), transparent 180px),
+    #ffffff;
+  color: var(--navy);
+  box-shadow: 0 18px 46px rgba(15, 23, 42, 0.14);
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1.35;
+  text-align: left;
+  white-space: normal;
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition:
+    opacity 0.16s ease,
+    transform 0.16s ease;
+}
+
+.pl400-page .pl400-question-badge.pl400-topic-badge::before {
+  content: "";
+  position: absolute;
+  right: 18px;
+  bottom: calc(100% + 4px);
+  z-index: 41;
+  width: 12px;
+  height: 12px;
+  border-right: 1px solid rgba(15, 98, 254, 0.18);
+  border-bottom: 1px solid rgba(15, 98, 254, 0.18);
+  background: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px) rotate(45deg);
+  transition:
+    opacity 0.16s ease,
+    transform 0.16s ease;
+}
+
+.pl400-page .pl400-question-badge.pl400-topic-badge:hover::after,
+.pl400-page .pl400-question-badge.pl400-topic-badge:focus-visible::after,
+.pl400-page .pl400-question-badge.pl400-topic-badge:hover::before,
+.pl400-page .pl400-question-badge.pl400-topic-badge:focus-visible::before {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pl400-page .pl400-question-badge.pl400-topic-badge:hover::before,
+.pl400-page .pl400-question-badge.pl400-topic-badge:focus-visible::before {
+  transform: translateY(0) rotate(45deg);
+}
+
+.pl400-page .pl400-question-badge.pl400-topic-badge:focus-visible {
+  box-shadow: 0 0 0 3px rgba(15, 98, 254, 0.18);
+}
+
+@media (max-width: 620px) {
+  .pl400-page .pl400-question-badge.pl400-topic-badge {
+    justify-self: start;
+  }
+
+  .pl400-page .pl400-question-badge.pl400-topic-badge::after {
+    left: 0;
+    right: auto;
+    max-width: min(280px, calc(100vw - 36px));
+  }
+
+  .pl400-page .pl400-question-badge.pl400-topic-badge::before {
+    left: 18px;
+    right: auto;
+  }
 }
