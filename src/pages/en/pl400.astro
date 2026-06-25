@@ -1,6 +1,5 @@
 ---
 import "../../styles/global.css";
-import MentoringPopup from "../../components/MentoringPopup.astro";
 import { PL400_QUESTIONS } from "../../data/pl400Questions.js";
 import { PL400_TOPIC_DEFINITIONS, PL400_TOPIC_SAMPLE_TARGETS } from "../../data/pl400Topics.js";
 ---
@@ -115,8 +114,6 @@ import { PL400_TOPIC_DEFINITIONS, PL400_TOPIC_SAMPLE_TARGETS } from "../../data/
 
       <p>&copy; 2026. All rights reserved.</p>
     </footer>
-
-    <MentoringPopup lang="en" />
 
     <script define:vars={{ PL400_QUESTIONS, PL400_TOPIC_DEFINITIONS, PL400_TOPIC_SAMPLE_TARGETS }}>
       const MAX_QUESTIONS = 50;
