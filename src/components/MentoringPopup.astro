@@ -31,7 +31,7 @@ const content =
       };
 ---
 
-<div class="mentor-popup-shell" data-mentor-popup>
+<div class="mentor-popup-shell is-visible is-collapsed" data-mentor-popup>
   <article class="mentor-popup" data-mentor-popup-card>
     <button
       class="mentor-popup-close"
@@ -62,14 +62,81 @@ const content =
   </article>
 
   <button
-  class="mentor-popup-mini"
-  type="button"
-  aria-label={content.expandLabel}
-  data-mentor-popup-expand
->
-  {content.mini}
-</button>
+    class="mentor-popup-mini"
+    type="button"
+    aria-label={content.expandLabel}
+    aria-expanded="false"
+    data-mentor-popup-expand
+  >
+    {content.mini}
+  </button>
 </div>
+
+<style is:inline>
+  .mentor-popup-shell[data-mentor-popup] {
+    position: fixed !important;
+    right: 24px !important;
+    bottom: 24px !important;
+    z-index: 99999 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: min(360px, calc(100vw - 32px)) !important;
+    max-width: calc(100vw - 32px) !important;
+    transform: translateY(0) scale(1) !important;
+    pointer-events: auto !important;
+  }
+
+  .mentor-popup-shell[data-mentor-popup].is-collapsed {
+    width: auto !important;
+    pointer-events: none !important;
+  }
+
+  .mentor-popup-shell[data-mentor-popup].is-collapsed .mentor-popup {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .mentor-popup-shell[data-mentor-popup].is-collapsed .mentor-popup-mini {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .mentor-popup-shell[data-mentor-popup]:not(.is-collapsed) .mentor-popup {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .mentor-popup-shell[data-mentor-popup]:not(.is-collapsed) .mentor-popup-mini {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  @media (max-width: 600px) {
+    .mentor-popup-shell[data-mentor-popup] {
+      right: 12px !important;
+      bottom: 12px !important;
+      max-width: calc(100vw - 24px) !important;
+    }
+
+    .mentor-popup-shell[data-mentor-popup]:not(.is-collapsed) {
+      width: calc(100vw - 24px) !important;
+    }
+
+    .mentor-popup-mini {
+      min-height: 44px !important;
+      padding: 10px 14px !important;
+      font-size: 13px !important;
+    }
+  }
+</style>
 
 <script is:inline>
   (() => {
@@ -79,92 +146,56 @@ const content =
 
     const collapseButton = popup.querySelector("[data-mentor-popup-collapse]");
     const expandButton = popup.querySelector("[data-mentor-popup-expand]");
+    const popupCard = popup.querySelector("[data-mentor-popup-card]");
 
-    const storageKey = "bernardoMentorPopupCollapsedAt";
-
-    // Time before the popup automatically becomes big again.
-    // Current value: 30 minutes.
-    const collapsedResetMs = 30 * 60 * 1000;
-
-    let resetTimer;
-
-    const getCollapsedAt = () => {
-      try {
-        return Number(window.localStorage.getItem(storageKey) || 0);
-      } catch {
-        return 0;
-      }
+    const forceVisibleShell = () => {
+      popup.style.setProperty("display", "block", "important");
+      popup.style.setProperty("visibility", "visible", "important");
+      popup.style.setProperty("opacity", "1", "important");
+      popup.style.setProperty("transform", "translateY(0) scale(1)", "important");
     };
 
-    const saveCollapsedAt = () => {
-      try {
-        window.localStorage.setItem(storageKey, String(Date.now()));
-      } catch {
-        // Ignore localStorage errors.
-      }
-    };
+    const collapsePopup = () => {
+      forceVisibleShell();
+      popup.classList.add("is-visible");
+      popup.classList.add("is-collapsed");
+      popup.classList.remove("is-open");
+      popup.style.setProperty("width", "auto", "important");
+      popup.style.setProperty("pointer-events", "auto", "important");
 
-    const clearCollapsedAt = () => {
-      try {
-        window.localStorage.removeItem(storageKey);
-      } catch {
-        // Ignore localStorage errors.
-      }
+      popupCard?.style.setProperty("display", "none", "important");
+      popupCard?.style.setProperty("visibility", "hidden", "important");
+      popupCard?.style.setProperty("pointer-events", "none", "important");
+
+      expandButton?.style.setProperty("display", "inline-flex", "important");
+      expandButton?.style.setProperty("visibility", "visible", "important");
+      expandButton?.style.setProperty("opacity", "1", "important");
+      expandButton?.style.setProperty("pointer-events", "auto", "important");
+      expandButton?.setAttribute("aria-expanded", "false");
     };
 
     const expandPopup = () => {
-      window.clearTimeout(resetTimer);
-      clearCollapsedAt();
-
+      forceVisibleShell();
       popup.classList.add("is-visible");
       popup.classList.remove("is-collapsed");
+      popup.classList.add("is-open");
+      popup.style.removeProperty("width");
+      popup.style.setProperty("pointer-events", "auto", "important");
+
+      popupCard?.style.setProperty("display", "block", "important");
+      popupCard?.style.setProperty("visibility", "visible", "important");
+      popupCard?.style.setProperty("opacity", "1", "important");
+      popupCard?.style.setProperty("pointer-events", "auto", "important");
+
+      expandButton?.style.setProperty("display", "none", "important");
+      expandButton?.style.setProperty("visibility", "hidden", "important");
+      expandButton?.style.setProperty("pointer-events", "none", "important");
+      expandButton?.setAttribute("aria-expanded", "true");
     };
 
-    const scheduleAutoExpand = (collapsedAt) => {
-      window.clearTimeout(resetTimer);
+    collapsePopup();
 
-      const elapsed = Date.now() - collapsedAt;
-      const remaining = collapsedResetMs - elapsed;
-
-      if (remaining <= 0) {
-        expandPopup();
-        return;
-      }
-
-      resetTimer = window.setTimeout(() => {
-        expandPopup();
-      }, remaining);
-    };
-
-    const collapsePopup = (shouldSave = true) => {
-      if (shouldSave) {
-        saveCollapsedAt();
-      }
-
-      const collapsedAt = getCollapsedAt() || Date.now();
-
-      popup.classList.add("is-visible");
-      popup.classList.add("is-collapsed");
-
-      scheduleAutoExpand(collapsedAt);
-    };
-
-    window.setTimeout(() => {
-      const collapsedAt = getCollapsedAt();
-
-      if (collapsedAt && Date.now() - collapsedAt < collapsedResetMs) {
-        collapsePopup(false);
-      } else {
-        expandPopup();
-      }
-    }, 1000);
-
-    collapseButton?.addEventListener("click", () => {
-      collapsePopup(true);
-    });
-
-    expandButton?.addEventListener("click", () => {
-      expandPopup();
-    });
+    collapseButton?.addEventListener("click", collapsePopup);
+    expandButton?.addEventListener("click", expandPopup);
   })();
 </script>

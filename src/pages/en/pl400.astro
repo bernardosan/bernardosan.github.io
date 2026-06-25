@@ -1,5 +1,6 @@
 ---
 import "../../styles/global.css";
+import MentoringPopup from "../../components/MentoringPopup.astro";
 import { PL400_QUESTIONS } from "../../data/pl400Questions.js";
 import { PL400_TOPIC_DEFINITIONS, PL400_TOPIC_SAMPLE_TARGETS } from "../../data/pl400Topics.js";
 ---
@@ -13,8 +14,8 @@ import { PL400_TOPIC_DEFINITIONS, PL400_TOPIC_SAMPLE_TARGETS } from "../../data/
       name="description"
       content="Interactive PL-400 practice questions with randomized order, optional answer review, a 70% practice passing score and a final diagnosis."
     />
-    <link rel="canonical" href="/en/pl400-mock-test/" />
-    <link rel="alternate" hreflang="en" href="/en/pl400-mock-test/" />
+    <link rel="canonical" href="/en/pl400/" />
+    <link rel="alternate" hreflang="en" href="/en/pl400/" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <meta name="theme-color" content="#2563eb" />
@@ -42,7 +43,7 @@ import { PL400_TOPIC_DEFINITIONS, PL400_TOPIC_SAMPLE_TARGETS } from "../../data/
         <div class="header-actions">
           <div class="language-switch" aria-label="Language">
             <span class="language-globe">🌐</span>
-            <a class="active" href="/en/pl400-mock-test/" aria-current="page">EN</a>
+            <a class="active" href="/en/pl400/" aria-current="page">EN</a>
           </div>
 
           <a class="header-button" href="/en/#contact">Request assessment</a>
@@ -114,6 +115,8 @@ import { PL400_TOPIC_DEFINITIONS, PL400_TOPIC_SAMPLE_TARGETS } from "../../data/
 
       <p>&copy; 2026. All rights reserved.</p>
     </footer>
+
+    <MentoringPopup lang="en" />
 
     <script define:vars={{ PL400_QUESTIONS, PL400_TOPIC_DEFINITIONS, PL400_TOPIC_SAMPLE_TARGETS }}>
       const MAX_QUESTIONS = 50;
